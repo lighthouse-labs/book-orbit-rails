@@ -1,1 +1,24 @@
-<h1>Home Page</h1>
+<h1>Book Orbit</h1>
+<% User.all.each do |user| %>
+  <%= user.username %>
+  <% user.bookmarks.each do |bookmark| %>
+    <%= bookmark.url %>
+    <% users_bookmark = BookmarksUser.where(user_id: user.id).where(bookmark_id: bookmark.id).first %>
+    <% users_bookmark.collections.each do |collection| %>
+      <%= collection.name%>
+    <% end %>
+  <% end %>
+  <p>
+
+  All Collections
+  <% collections = [] %>
+  <% BookmarksUser.where(user_id: user.id).each do |row| %>
+    <% collections <<  BookmarksUsersCollection.find(row.id).collection %>
+  <% end %>
+
+  <% collections.each do |collection| %>
+    <%= collection.name %>
+  <% end %>
+
+  </p>
+<% end %>

@@ -1,11 +1,36 @@
 @import 'side-menu-old-ie.css';
 @import 'side-menu.css';
+@import url(http://fonts.googleapis.com/css?family=Quicksand);
 
 /* Layout */
 
 body {
   background: url('../img/background.png') repeat repeat;
+  font-family: 'Quicksand', sans-serif;
 }
+
+a:link,
+a:visited {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:active {
+  color: #777;
+  transition: color 0.2s ease;
+}
+
+#menu a {
+  color: #fff;
+}
+
+hr {
+  border: 1px solid #333;
+}
+
+/* Home Page */
 
 .homepage {
   text-align:center;
@@ -16,6 +41,8 @@ body {
   margin-left: -230px;
   margin-top: 20%;
 }
+
+/* User Library Pages */
 
 #menu {
   background: #222;
@@ -28,6 +55,12 @@ body {
   background: #fff;
   box-shadow: 0px 0px 3px #777;
   word-wrap: break-word;
+  transition: background 0.2s ease;
+}
+
+.bookmark:hover {
+  background: #f8f8f8;
+  transition: background 0.2s ease;
 }
 
 /* Forms */

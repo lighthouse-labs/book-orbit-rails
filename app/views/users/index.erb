@@ -10,15 +10,20 @@
 
             <form class="pure-form">
                 <fieldset>
-                    <input type="text" placeholder="Add something...">
+                    <input type="text" name="new_url" placeholder="Add something..." required>
                     <button type="submit" class="pure-button button-sidebar">+</button>
                 </fieldset>
             </form>
 
+            <hr>
+
             <form class="pure-form">
                 <fieldset>
-                    <input type="text" placeholder="Find something...">
+                    <input type="text" name="search_string" placeholder="Find something..." required>
                     <button type="submit" class="pure-button button-sidebar">S</button>
+                </fieldset>
+                <fieldset>
+                    <input type="text" placeholder="In a collection..." class="collection-input">
                 </fieldset>
             </form>
 
@@ -35,7 +40,7 @@
     <div id="main">
 
         <div class="content">
-            <h1><%= @user.username %></h1>
+            <h1><%= @user.username %> / <small><a href="/users/<%= @user.id%>/edit">password protect</a></small></h1>
 
             <div class="pure-g">
 
@@ -44,7 +49,7 @@
                 <div class="bookmark">
                     <h3><a href="<%= bookmark.url %>" title="<%= bookmark.url%>" target="_blank"><%= bookmark.url%></a></h3>
                     <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
-                      <p>Tags: 
+                      <p>Collections: 
                     <% users_bookmark.collections.each do |collection| %>
                       <%= collection.name%>
                     <% end %>

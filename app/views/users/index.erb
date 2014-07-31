@@ -7,7 +7,7 @@
 
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-        <h3><%= @user.username %></h3>
+        <h3><a href="/<%= @user.username %>"><%= @user.username %></a></h3>
         <h4><a href="#">password protect</a></h4>
             <form class="pure-form">
                 <fieldset>
@@ -44,7 +44,7 @@
     <div id="main">
 
         <div class="content">
-            <h1><a href="/users/<%= @user.id%>">all collections</a> / <small><a href="/users/<%= @user.id%>/edit">password protect</a></small></h1>
+            <h1><a href="/<%= @user.username%>">all collections</a> / </h1>
             <%if @collection
               bookmarks = bookmarks_by_collection
             else

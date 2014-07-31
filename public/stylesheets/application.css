@@ -9,6 +9,10 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
+.pure-g [class *="pure-u"] {
+  font-family: 'Quicksand' sans-serif;
+}
+
 a:link,
 a:visited {
   color: #222;
@@ -44,14 +48,26 @@ hr {
 
 /* User Library Pages */
 
+/* Sidebar */
+
 #menu {
   background: #222;
   padding: 10px 15px;
 }
 
+.search-more {
+  display: none;
+}
+
+.collection-input {
+  height: 25px;
+}
+
+/* Content Layout */
+
 .bookmark {
   margin: 15px 15px 0px 0px;
-  padding: 5px 10px;
+  padding: 10px 15px 1px;
   background: #fff;
   box-shadow: 0px 0px 3px #777;
   word-wrap: break-word;
@@ -63,12 +79,8 @@ hr {
   transition: background 0.2s ease;
 }
 
-.search-more {
-  display: none;
-}
-
-.collection-input {
-  height: 25px;
+.bookmark h3 {
+  margin-top: 0.2em;
 }
 
 /* Forms */

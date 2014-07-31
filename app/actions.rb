@@ -15,3 +15,12 @@ get '/:username' do
   erb :'/users/index'
 
 end
+
+get '/:username/collections/:collection' do
+
+  name = params[:username]
+  @user = User.find_by(username: name)
+  @collection = params[:collection]
+  erb :'/users/index'
+
+end

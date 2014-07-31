@@ -11,9 +11,16 @@ helpers do
   def all_user_collections
     collections = []
     BookmarksUser.where(user_id: @user.id).each do |row|
-      collections << BookmarksUsersCollection.find(row.id).collection.name
+
+      bookmarks_collection = BookmarksUsersCollection.where(bookmarks_user_id: row.id).first
+
+      if bookmarks_collection.nil?
+        #do nothing
+      else
+        collections << bookmarks_collection.collection.name
+      end
     end
-    collections
+    collections.uniq
   end
 
   def user_exists?(username)
@@ -35,7 +42,6 @@ helpers do
     if !collection_exists?(@collection)
       Collection.create(name: @collection)
     end
-
     cid = Collection.find_by(name: @collection).id
     buc_arr = BookmarksUsersCollection.where(collection_id: cid)
 

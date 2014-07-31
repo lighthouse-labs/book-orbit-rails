@@ -34,6 +34,10 @@ hr {
   border: 1px solid #333;
 }
 
+.meta {
+  font-size: 0.75em;
+}
+
 /* Home Page */
 
 .homepage {
@@ -79,8 +83,12 @@ hr {
   transition: background 0.2s ease;
 }
 
-.bookmark h3 {
+.bookmark h4 {
   margin-top: 0.2em;
+}
+
+.bookmark h4 a {
+  font-weight: bold;
 }
 
 /* Forms */

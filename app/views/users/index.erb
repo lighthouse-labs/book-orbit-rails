@@ -13,7 +13,7 @@
             <h4>COLLECTIONS</h4>
 
             <ul>
-              <% all_collections.each do |collection| %>
+              <% all_users_collections.each do |collection| %>
                 <li><a href="#"><%= collection %></a></li>
               <% end %>
             </ul>
@@ -24,7 +24,6 @@
 
         <div class="content">
             <h1><%= @user.username %></h1>
-
             <% @user.bookmarks.each do |bookmark| %>
               <div class="bookmark">
                 <h3><a href="<%= bookmark.url %>" title="<%= bookmark.url%>" target="_blank"><%= bookmark.url%></a></h3>

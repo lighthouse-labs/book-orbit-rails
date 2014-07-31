@@ -3,7 +3,7 @@ helpers do
   def all_collections
     collections = []
     BookmarksUser.all.each do |row|
-      collections <<  BookmarksUsersCollection.find(row.id).collection.name
+      collections <<  BookmarksUsersCollection.where(bookmarks_user_id: row.id).first.collection.name
     end
     collections
   end
@@ -23,12 +23,27 @@ helpers do
     false
   end
 
-  def login?
-
+  def collection_exists?(collection)
+    Collection.all.each do |x|
+      return true if x.name == collection
+    end
+    false
   end
 
-  def method_name
+  def bookmarks_by_collection
+    bookmarks = []
+    if !collection_exists?(@collection)
+      Collection.create(name: @collection)
+    end
 
+    cid = Collection.find_by(name: @collection).id
+    buc_arr = BookmarksUsersCollection.where(collection_id: cid)
+
+    buc_arr.each do |buc|
+      bid = BookmarksUser.find(buc.bookmarks_user_id).bookmark_id
+      bookmarks << Bookmark.find(bid)
+    end
+    bookmarks
   end
 
 end

@@ -63,6 +63,14 @@ hr {
   transition: background 0.2s ease;
 }
 
+.search-more {
+  display: none;
+}
+
+.collection-input {
+  height: 25px;
+}
+
 /* Forms */
 
 .pure-form input{

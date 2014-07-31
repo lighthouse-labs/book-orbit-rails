@@ -1,4 +1,5 @@
 $(document).ready(function() {
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $( "input[type='text']" ).on("change paste keyup", function() {
+    $('.search-more').show(200);
+  });
 });

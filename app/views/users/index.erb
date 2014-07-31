@@ -35,7 +35,7 @@
 
             <ul>
               <% all_user_collections.each do |collection| %>
-                <li><a href="#"><%= collection %></a></li>
+                <li><a href="/<%= @user.username %>/collections/<%= collection %>"><%= collection %></a></li>
               <% end %>
             </ul>
         </div>
@@ -45,14 +45,18 @@
 
         <div class="content">
             <h1><a href="/users/<%= @user.id%>">all collections</a> / <small><a href="/users/<%= @user.id%>/edit">password protect</a></small></h1>
-
+            <%if @collection
+              bookmarks = bookmarks_by_collection
+            else
+              bookmarks = @user.bookmarks
+            end%>
             <div class="pure-g">
-            <% @user.bookmarks.each do |bookmark| %>
+            <% bookmarks.each do |bookmark| %>
               <div class="pure-u-1-3">
                 <div class="bookmark">
                     <h3><a href="<%= bookmark.url %>" title="<%= bookmark.url%>" target="_blank"><%= bookmark.url%></a></h3>
                     <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
-                      <p>Collections: 
+                      <p>Collections:
                     <% users_bookmark.collections.each do |collection| %>
                       <%= collection.name%>
                     <% end %>

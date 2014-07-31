@@ -1,5 +1,67 @@
 @import 'side-menu-old-ie.css';
 @import 'side-menu.css';
 
+/* Layout */
+
+body {
+  background: url('../img/background.png') repeat repeat;
+}
+
+.homepage {
+  text-align:center;
+}
+
+.homepage .logo {
+  max-height: 300px;
+  margin-left: -230px;
+  margin-top: 20%;
+}
+
 #menu {
+  background: #222;
+  padding: 10px 15px;
+}
+
+.bookmark {
+  margin: 15px 15px 0px 0px;
+  padding: 5px 10px;
+  background: #fff;
+  box-shadow: 0px 0px 3px #777;
+  word-wrap: break-word;
+}
+
+/* Forms */
+
+.pure-form input{
+  width: 155px;
+}
+
+.pure-button {
+  padding: 0.5em 0.8em;
+}
+
+.pure-form input[type=text],
+.pure-form input[type=password],
+.pure-form input[type=email],
+.pure-form input[type=url],
+.pure-form input[type=date],
+.pure-form input[type=month],
+.pure-form input[type=time],
+.pure-form input[type=datetime],
+.pure-form input[type=datetime-local],
+.pure-form input[type=week],
+.pure-form input[type=number],
+.pure-form input[type=search],
+.pure-form input[type=tel],
+.pure-form input[type=color],
+.pure-form select,
+.pure-form textarea {
+  padding: .45em .5em;
+}
+
+/* Form Colours */
+
+.sidebar-button {
+  background: #fff;
+  color: #222;
 }

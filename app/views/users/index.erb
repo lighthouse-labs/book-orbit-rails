@@ -7,13 +7,25 @@
 
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-            <p>[add bar]</p>
-            <p>[search bar]</p>
+
+            <form class="pure-form">
+                <fieldset>
+                    <input type="text" placeholder="Add something...">
+                    <button type="submit" class="pure-button button-sidebar">+</button>
+                </fieldset>
+            </form>
+
+            <form class="pure-form">
+                <fieldset>
+                    <input type="text" placeholder="Find something...">
+                    <button type="submit" class="pure-button button-sidebar">S</button>
+                </fieldset>
+            </form>
 
             <h4>COLLECTIONS</h4>
 
             <ul>
-              <% all_collections.each do |collection| %>
+              <% all_user_collections.each do |collection| %>
                 <li><a href="#"><%= collection %></a></li>
               <% end %>
             </ul>
@@ -25,16 +37,23 @@
         <div class="content">
             <h1><%= @user.username %></h1>
 
+            <div class="pure-g">
+
             <% @user.bookmarks.each do |bookmark| %>
-              <div class="bookmark">
-                <h3><a href="<%= bookmark.url %>" title="<%= bookmark.url%>" target="_blank"><%= bookmark.url%></a></h3>
-                <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
-                  <p>Tags: </p>
-                <% users_bookmark.collections.each do |collection| %>
-                  <p><%= collection.name%></p>
-                <% end %>
+              <div class="pure-u-1-3">
+                <div class="bookmark">
+                    <h3><a href="<%= bookmark.url %>" title="<%= bookmark.url%>" target="_blank"><%= bookmark.url%></a></h3>
+                    <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
+                      <p>Tags: 
+                    <% users_bookmark.collections.each do |collection| %>
+                      <%= collection.name%>
+                    <% end %>
+                    </p>
+                </div>
               </div>
             <% end %>
+
+            </div>
         </div>
     </div>
 </div>

@@ -38,7 +38,11 @@ post '/:username' do
   if params[:collection].nil? || params[:collection] == ""
     collection = Collection.find(3)
   else
-    collection = Collection.find_by(name: params[:collection])
+    if collection_exists?(params[:collection])
+      collection = Collection.find_by(name: params[:collection])
+    else
+      collection = Collection.create(name: params[:collection])
+    end
   end
 
   users_bookmark.collections << collection

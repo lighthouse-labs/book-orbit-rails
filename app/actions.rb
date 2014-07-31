@@ -4,16 +4,33 @@ get '/' do
 end
 
 get '/:username' do
-
   name = params[:username]
-
   if !user_exists?(name)
     User.create(username: name)
   end
-
   @user = User.find_by(username: name)
   erb :'/users/index'
+end
 
+get '/:username/' do
+  redirect :"/#{params[:username]}"
+end
+
+get '/:username/search' do
+  search_array = params[:search_string].split(" ")
+  name = params[:username]
+  @user = User.find_by(username: name)
+
+  @search_results = []
+
+  search_array.each do | search_string |
+    @matcher = search_string
+    search_users_bookmarks
+  end
+
+  @search_results
+
+  erb :'users/search'
 end
 
 get '/:username/collections/:collection' do
@@ -46,6 +63,7 @@ post '/:username' do
   end
 
   users_bookmark.collections << collection
+  
 
   erb :'/users/index'
 end

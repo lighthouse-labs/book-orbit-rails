@@ -43,16 +43,11 @@
     <div id="main">
 
         <div class="content">
-            <h2><a href="/<%= @user.username%>">all collections</a> / <% if @collection %>
-                   <%= @collection %>
-                <% end %></h2>
-
-            <%if @collection
-              bookmarks = users_bookmarks_in_collection
-            else
-              bookmarks = @user.bookmarks
-            end%>
-
+            <h2>search results for "<%= @matcher %>":</h2>
+            <% bookmarks = @search_results %>
+            <% if bookmarks.empty? %>
+            <p>No bookmarks that match.</p>
+            <% end %>
             <div class="pure-g">
             <% bookmarks.each do |bookmark| %>
               <div class="pure-u-1-3">

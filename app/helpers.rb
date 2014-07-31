@@ -37,19 +37,39 @@ helpers do
     false
   end
 
-  def bookmarks_by_collection
-    bookmarks = []
-    if !collection_exists?(@collection)
-      Collection.create(name: @collection)
+  def users_bookmarks_in_collection
+    bookmarks_in_collection = []
+    @collection = Collection.find_by(name: @collection)
+    all_user_bookmarks_in_collection = BookmarksUsersCollection.where(collection_id: @collection.id)
+    # now we need our current users' bookmarks
+    all_user_bookmarks_in_collection.each do |row|
+      # bookmarks_user_id
+      all_user_bookmarks = BookmarksUser.where(id: row.bookmarks_user_id)
+      all_user_bookmarks.each do | bookmark |
+        if bookmark.user_id == @user.id
+          # now get the bookmark itself.
+          bookmarks_in_collection << Bookmark.find(bookmark.bookmark_id)
+        end
+     end
     end
-    cid = Collection.find_by(name: @collection).id
-    buc_arr = BookmarksUsersCollection.where(collection_id: cid)
+    bookmarks_in_collection
+  end
 
-    buc_arr.each do |buc|
-      bid = BookmarksUser.find(buc.bookmarks_user_id).bookmark_id
-      bookmarks << Bookmark.find(bid)
+  def search_users_bookmarks
+    Bookmark.all.each do |bookmark|
+      if BookmarksUser.where(bookmark_id: bookmark.id).where(user_id: @user.id).first
+        @search_results << bookmark if bookmark.url =~ /#{@matcher}/
+      end
     end
-    bookmarks
+
+    Collection.all.each do |collection|
+      if collection.name =~ /#{@matcher}/
+        @collection = collection.name
+        users_bookmarks_in_collection.each do | bookmark |
+          @search_results << bookmark
+        end
+      end
+    end
   end
 
 end

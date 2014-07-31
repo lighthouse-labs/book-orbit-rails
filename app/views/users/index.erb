@@ -7,7 +7,8 @@
 
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-
+        <h3><%= @user.username %></h3>
+        <h4><a href="#">password protect</a></h4>
             <form class="pure-form">
                 <fieldset>
                     <input type="text" name="new_url" placeholder="Add something..." required>
@@ -43,7 +44,7 @@
     <div id="main">
 
         <div class="content">
-            <h1><%= @user.username %> / <small><a href="/users/<%= @user.id%>/edit">password protect</a></small></h1>
+            <h1><a href="/users/<%= @user.id%>">all collections</a> / <small><a href="/users/<%= @user.id%>/edit">password protect</a></small></h1>
 
             <div class="pure-g">
             <% @user.bookmarks.each do |bookmark| %>

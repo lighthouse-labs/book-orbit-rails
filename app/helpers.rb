@@ -12,12 +12,14 @@ helpers do
     collections = []
     BookmarksUser.where(user_id: @user.id).each do |row|
 
-      bookmarks_collection = BookmarksUsersCollection.where(bookmarks_user_id: row.id).first
+      bookmarks_collections = BookmarksUsersCollection.where(bookmarks_user_id: row.id)
 
-      if bookmarks_collection.nil?
-        #do nothing
-      else
-        collections << bookmarks_collection.collection.name
+      bookmarks_collections.each do |bookmarks_collection|
+        if bookmarks_collection.nil?
+          #do nothing
+        else
+          collections << bookmarks_collection.collection.name
+        end
       end
     end
     collections = collections.uniq

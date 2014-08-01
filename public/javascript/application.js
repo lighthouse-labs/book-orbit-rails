@@ -1,8 +1,18 @@
 $(document).ready(function() {
-  $( "fieldset" ).on("change paste keyup", "input[type='text']", function() {
-    $(this).parent().siblings().show(200);
-  }).on("focusout", "input[type='text']", function(){
-    $(this).parent().siblings().hide(200);
+
+  var collection_input = "<input type='text' name='collection[]'' class='collection-input' placeholder='Collection name'>";
+  
+  $( "fieldset" ).one("focusin", "input[name='url']", function(){
+    $(this).next().remove();
+    $(this).animate({ width: "200px" }, 200);
+    $(this).next().show(200);
+    $(this).next().next().show(300);
+  });
+
+  $( ".add-collection-input" ).on("click", function(e){
+    console.log('add collection clicked');
+    e.preventDefault();
+    $(this).parent().append(collection_input);
   });
   
   $( ".pure-u-1-3" ).on("mouseenter", function() {

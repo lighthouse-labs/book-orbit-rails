@@ -12,17 +12,18 @@
         <hr>
             <form method="post" action="/<%= @user.username %>" class="pure-form">
                 <fieldset>
-                    <input type="text" name="url" placeholder="Add something..." required>
+                    <input type="text" name="url" placeholder="Add url..." required>
                     <button type="submit" class="pure-button button-sidebar">+</button>
+                    <div class="collection-inputs hide">
+                        <p>Collections:</p>
+                        <input type="text" name="collection[]" class="collection-input" placeholder="Collection name"><span class="add-collection-input">+</span>
+                    </div>
+                    <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
                 </fieldset>
-                <fieldset class="search-more">
-                    <label>Add to Collections:</label>
-                    <input type="text" name="collection" class="collection-input" placeholder="Collection name">
+                    
                     <input type="hidden" name="user">
-                    <hr>
-                </fieldset>
             </form>
-
+            <hr>
             <form method="get" action="/<%= @user.username %>/search" class="pure-form">
                 <fieldset>
                     <input type="text" name="search_string" placeholder="Find something..." required>

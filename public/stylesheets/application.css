@@ -69,7 +69,22 @@ hr {
 }
 
 .collection-input {
+  margin-bottom: 1em;
   height: 25px;
+}
+
+.hide,
+a.hide {
+  display: none;
+}
+
+.add-collection-input {
+  margin-top: 3px;
+  margin-left: 10px;
+  padding: 2px 5px;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
 }
 
 /* Content Layout */

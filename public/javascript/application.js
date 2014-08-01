@@ -23,7 +23,7 @@ $(document).ready(function() {
     $(this).parent().append(collection_input);
   });
   
-  $( ".pure-u-1-3" ).on("mouseenter", function() {
+  $( ".pure-u-1-2" ).on("mouseenter", function() {
     $(this).find(".delete").show(200);
   }).on("mouseleave",function(){
     $(this).find(".delete").hide(200);

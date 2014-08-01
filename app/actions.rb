@@ -56,11 +56,13 @@ post '/:username' do
   name = params[:username]
   @user = User.find_by(username: name)
 
+  url = append_http(params[:url])
+
   # If url does not exist in Bookmark table, create it
-  if Bookmark.find_by(url: params[:url]).nil?
-    bookmark = Bookmark.create(url: params[:url])
+  if Bookmark.find_by(url: url).nil?
+    bookmark = Bookmark.create(url: url)
   else
-    bookmark = Bookmark.find_by(url: params[:url])
+    bookmark = Bookmark.find_by(url: url)
   end
 
   @user.bookmarks << bookmark

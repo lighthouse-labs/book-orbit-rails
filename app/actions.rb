@@ -62,7 +62,15 @@ post '/:username' do
 
   # If url does not exist in Bookmark table, create it
   if Bookmark.find_by(url: url).nil?
-    bookmark = Bookmark.create(url: url)
+
+    page = Nokogiri::HTML(open(url))
+
+    # if nokogiri parses in an empty title, set title = url
+    title = get_title(page)
+    title = url if title.empty?
+
+    bookmark = Bookmark.create(url: url, title: title, keywords: get_keywords(page), desc: get_desc(page))
+
   else
     bookmark = Bookmark.find_by(url: url)
   end

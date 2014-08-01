@@ -100,8 +100,8 @@ helpers do
     keywords_meta.map(&:value).map(&:downcase).join(', ')
   end
 
-  def get_description(page)
-    page.xpath('//meta[@name="description"]/@content')
+  def get_desc(page)
+    page.xpath('//meta[@name="description"]/@content').map(&:value).first
   end
 
 end

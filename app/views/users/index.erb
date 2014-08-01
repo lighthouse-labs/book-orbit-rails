@@ -23,7 +23,7 @@
                     </div>
                     <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
                 </fieldset>
-                    
+
                     <input type="hidden" name="user">
             </form>
             <hr>
@@ -70,12 +70,10 @@
                         </form>
                     </span>
                   <% b_url = append_http(bookmark.url) %>
-
-                  <% page = Nokogiri::HTML(open(b_url)) %>
-                    <h4><a href="<%= b_url %>" title="<%= get_title(page) %>" target="_blank"><%= get_title(page) %></a></h4>
+                    <h4><a href="<%= b_url %>" title="<%= bookmark.title %>" target="_blank"><%= bookmark.title %></a></h4>
                     <h6><a href="<%= b_url %>" title="<%= b_url %>" target="_blank"><%= b_url %></a></h6>
-                    <h6><%= get_keywords(page) %></h6>
-                    <h6><%= get_description(page) %></h6>
+                    <h6><%= bookmark.keywords %></h6>
+                    <h6><%= bookmark.desc %></h6>
                     <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
                       <p class="meta">Collections:
                     <% users_bookmark.collections.each do |collection| %>

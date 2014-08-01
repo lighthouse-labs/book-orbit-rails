@@ -17,13 +17,13 @@ get '/:username/' do
 end
 
 get '/:username/search' do
-  search_array = params[:search_string].split(" ")
+  @search_array = params[:search_string].split(" ")
   name = params[:username]
   @user = User.find_by(username: name)
 
   @search_results = []
 
-  search_array.each do | search_string |
+  @search_array.each do | search_string |
     @matcher = search_string
     search_users_bookmarks
   end

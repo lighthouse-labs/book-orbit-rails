@@ -87,7 +87,7 @@ post '/:username' do
     users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
 
     # Array of collections from the "add" form
-    submitted_collections = params[:collection]
+    submitted_collections = params[:collection].uniq
 
     # Go through each collection name
     submitted_collections.each do |collection|

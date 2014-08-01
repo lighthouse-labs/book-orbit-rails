@@ -1,48 +1,4 @@
-<div id="layout">
-    <!-- Menu toggle -->
-    <a href="#menu" id="menuLink" class="menu-link">
-        <!-- Hamburger icon -->
-        <span></span>
-    </a>
-
-    <div id="menu">
-        <div class="pure-menu pure-menu-open">
-        <h3><a href="/<%= @user.username %>"><%= @user.username %></a>
-        </h3>
-        <hr>
-        <% if @existing_bookmark %>
-        <p><%= @existing_bookmark.url %> already exists.</p>
-        <% end %>
-            <form method="post" action="/<%= @user.username %>" class="pure-form">
-                <fieldset>
-                    <input type="text" name="url" placeholder="Add url..." required>
-                    <a class="pure-button button-sidebar show-form">+</a>
-                    <div class="collection-inputs hide">
-                        <p>Collections:</p>
-                        <input type="text" name="collection[]" class="collection-input" placeholder="Collection name"><span class="add-collection-input">+</span>
-                    </div>
-                    <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
-                </fieldset>
-                    
-                    <input type="hidden" name="user">
-            </form>
-            <hr>
-            <form method="get" action="/<%= @user.username %>/search" class="pure-form">
-                <fieldset>
-                    <input type="text" name="search_string" placeholder="Find something..." required>
-                    <button type="submit" class="pure-button button-sidebar">S</button>
-                </fieldset>
-            </form>
-
-            <h4>COLLECTIONS</h4>
-
-            <ul>
-              <% all_user_collections.each do |collection| %>
-                <li><a href="/<%= @user.username %>/collections/<%= collection %>"><%= collection %></a></li>
-              <% end %>
-            </ul>
-        </div>
-    </div>
+<%= erb :'users/menu' %>
 
     <div id="main">
 
@@ -53,9 +9,10 @@
             <p>No bookmarks that match.</p>
             <% end %>
             <% bookmarks = bookmarks.reverse %>
-            <div class="pure-g">
+            <div class="bookmarks-container">
             <% bookmarks.each do |bookmark| %>
-              <div class="pure-u-1-2">
+            
+              <div class="pure-u-1">
                 <div class="bookmark">
                     <span class="delete">
                         <form method="post" action="/<%= @user.username %>/bookmarks/delete">
@@ -63,7 +20,11 @@
                             <button type="submit" class="delete-button">x</button>
                         </form>
                     </span>
-                    <h4><a href="<%= bookmark.url %>" title="<%= bookmark.url%>" target="_blank"><%= bookmark.url%></a></h4>
+                  <% b_url = append_http(bookmark.url) %>
+                    <h4><a href="<%= b_url %>" title="<%= bookmark.title %>" target="_blank"><%= bookmark.title %></a></h4>
+                    <h6><a href="<%= b_url %>" title="<%= b_url %>" target="_blank"><%= b_url %></a></h6>
+                    <h6><%= bookmark.desc %></h6>
+                    <h6><%= bookmark.keywords %></h6>
                     <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
                       <p class="meta">Collections:
                     <% users_bookmark.collections.each do |collection| %>
@@ -72,8 +33,8 @@
                     </p>
                 </div>
               </div>
-            <% end %>
 
+            <% end %>
             </div>
         </div>
     </div>

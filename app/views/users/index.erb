@@ -57,7 +57,11 @@
             <% bookmarks.each do |bookmark| %>
               <div class="pure-u-1-3">
                 <div class="bookmark">
-                    <span class="delete">x</span>
+                    <span class="delete">
+                        <form method="post">
+                            <button type="submit" class="delete-button">x</button>
+                        </form>
+                    </span>
                   <% b_url = append_http(bookmark.url) %>
                     <h4><a href="<%= b_url %>" title="<%= b_url %>" target="_blank"><%= b_url %></a></h4>
                     <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>

@@ -104,6 +104,21 @@ hr {
   right: 5px;
 }
 
+button.delete-button {
+  padding: 0px 4px 2px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.7em;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 0px;
+}
+
+button.delete-button:hover {
+  background-color: #333;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
 /* Forms */
 
 .pure-form input{

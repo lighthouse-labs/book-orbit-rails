@@ -20,7 +20,11 @@ helpers do
         collections << bookmarks_collection.collection.name
       end
     end
-    collections.uniq
+    unique_c = collections.uniq
+
+    return [] if unique_c.empty?
+    index = unique_c.index("uncategorized")
+    unique_c.insert(unique_c.length-1, unique_c.delete_at(index))
   end
 
   def user_exists?(username)
@@ -69,6 +73,15 @@ helpers do
           @search_results << bookmark
         end
       end
+    end
+  end
+
+  def append_http(url)
+    if (url =~ /^http:\/\// ||
+        url =~ /^https:\/\//)
+      url
+    else
+      url.insert(0, "http://")
     end
   end
 

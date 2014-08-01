@@ -20,11 +20,13 @@ helpers do
         collections << bookmarks_collection.collection.name
       end
     end
-    unique_c = collections.uniq
+    collections = collections.uniq
 
-    return [] if unique_c.empty?
-    index = unique_c.index("uncategorized")
-    unique_c.insert(unique_c.length-1, unique_c.delete_at(index))
+    if collections.include? 'uncategorized'
+      index = collections.index("uncategorized")
+      collections.insert(collections.length-1, collections.delete_at(index))
+    end
+    collections
   end
 
   def user_exists?(username)

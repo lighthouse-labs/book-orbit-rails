@@ -53,7 +53,7 @@ post '/:username' do
   users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
 
   if params[:collection].nil? || params[:collection] == ""
-    collection = Collection.find(3)
+    collection = Collection.find(1)
   else
     if collection_exists?(params[:collection])
       collection = Collection.find_by(name: params[:collection])

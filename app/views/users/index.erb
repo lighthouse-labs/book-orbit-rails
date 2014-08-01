@@ -10,10 +10,13 @@
         <h3><a href="/<%= @user.username %>"><%= @user.username %></a>
         </h3>
         <hr>
+        <% if @existing_bookmark %>
+        <p><%= @existing_bookmark.url %> already exists.</p>
+        <% end %>
             <form method="post" action="/<%= @user.username %>" class="pure-form">
                 <fieldset>
                     <input type="text" name="url" placeholder="Add url..." required>
-                    <button type="submit" class="pure-button button-sidebar">+</button>
+                    <a class="pure-button button-sidebar show-form">+</a>
                     <div class="collection-inputs hide">
                         <p>Collections:</p>
                         <input type="text" name="collection[]" class="collection-input" placeholder="Collection name"><span class="add-collection-input">+</span>

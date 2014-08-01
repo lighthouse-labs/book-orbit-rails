@@ -1,10 +1,18 @@
 $(document).ready(function() {
 
   var collection_input = "<input type='text' name='collection[]'' class='collection-input' placeholder='Collection name'>";
-  
+
   $( "fieldset" ).one("focusin", "input[name='url']", function(){
     $(this).next().remove();
     $(this).animate({ width: "200px" }, 200);
+    $(this).next().show(200);
+    $(this).next().next().show(300);
+  });
+
+  $( "fieldset" ).one("click", ".show-form", function(e){
+    e.preventDefault;
+    $(this).prev().animate({ width: "200px" }, 200);
+    $(this).hide(100);
     $(this).next().show(200);
     $(this).next().next().show(300);
   });

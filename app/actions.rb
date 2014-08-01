@@ -56,18 +56,26 @@ post '/:username' do
   name = params[:username]
   @user = User.find_by(username: name)
 
-  bookmark = Bookmark.create(url: params[:url])
+  # If url does not exist in Bookmark table, create it
+  if Bookmark.find_by(url: params[:url]).nil?
+    bookmark = Bookmark.create(url: params[:url])
+  else
+    bookmark = Bookmark.find_by(url: params[:url])
+  end
 
   @user.bookmarks << bookmark
 
   users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
 
+  # Check if collection a collection was passed and assign to "uncategorized" if not
   if params[:collection].nil? || params[:collection] == ""
     collection = Collection.find(1)
   else
+    # If a collection was passed, check if it already exists
     if collection_exists?(params[:collection])
       collection = Collection.find_by(name: params[:collection])
     else
+      # Otherwise create the new collection
       collection = Collection.create(name: params[:collection])
     end
   end

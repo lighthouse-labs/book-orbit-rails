@@ -55,6 +55,7 @@ hr {
   margin-top: 20%;
 }
 
+
 /* User Library Pages */
 
 /* Sidebar */
@@ -95,14 +96,24 @@ a.hide {
 
 /* Content Layout */
 
+.bookmarks-container {
+  -moz-column-count: 2;
+  -moz-column-gap: 13px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 13px;
+  column-count: 2;
+  column-gap: 13px;
+}
+
 .bookmark {
   position: relative;
-  margin: 15px 15px 0px 0px;
+  margin: 10px 2px;
   padding: 10px 15px 1px;
   background: #fff;
   box-shadow: 0px 0px 3px #777;
   word-wrap: break-word;
   transition: background 0.2s ease;
+  height: 100%;
 }
 
 .bookmark:hover {

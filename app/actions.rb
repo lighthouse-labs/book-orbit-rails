@@ -56,6 +56,7 @@ post '/:username' do
   name = params[:username]
   @user = User.find_by(username: name)
 
+  # Append the http:// if it does not exist in the submitted url
   url = append_http(params[:url])
 
   # If url does not exist in Bookmark table, create it
@@ -65,25 +66,36 @@ post '/:username' do
     bookmark = Bookmark.find_by(url: url)
   end
 
+  # Add to the user's list of bookmarks
   @user.bookmarks << bookmark
 
+  # Select the user's bookmark
   users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
 
-  # Check if collection a collection was passed and assign to "uncategorized" if not
-  if params[:collection].nil? || params[:collection] == ""
-    collection = Collection.find(1)
-  else
-    # If a collection was passed, check if it already exists
-    if collection_exists?(params[:collection])
-      collection = Collection.find_by(name: params[:collection])
-    else
-      # Otherwise create the new collection
-      collection = Collection.create(name: params[:collection])
-    end
-  end
+  # Array of collections from the "add" form
+  submitted_collections = params[:collection]
 
-  users_bookmark.collections << collection
-  
+  # Go through each collection name
+  submitted_collections.each do |collection|
+
+    binding.pry
+
+    # Check if a collection was passed. If it's empty, then assign it to "uncategorized"
+    if collection == ""
+      collection = Collection.find(1)
+    else
+      # If a collection was passed, check if it already exists
+      if collection_exists?(collection)
+        collection = Collection.find_by(name: collection)
+      else
+        # Otherwise create the new collection
+        collection = Collection.create(name: collection)
+      end
+    end
+
+    users_bookmark.collections << collection
+  end
+   
 
   erb :'/users/index'
 end

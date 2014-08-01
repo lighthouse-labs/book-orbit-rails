@@ -4,19 +4,15 @@ configure do
     ActiveRecord::Base.logger = Logger.new(STDOUT)
   end
 
-  puts "Establishing connection to database ..."
-  ActiveRecord::Base.establish_connection(
-    adapter: 'postgresql',
-    encoding: 'unicode',
-    pool: 5,
-    database: 'd50q6341u8fcsv',
-    username: 'qlutcsmamscfdv',
-    password: 'VcCIyxrCKR8LhZdKoa-L3-EL3C',
-    host: 'ec2-54-235-246-73.compute-1.amazonaws.com',
-    port: 5432,
-    min_messages: 'error'
-  )
-  puts "CONNECTED"
+  set :database, {
+    adapter: "postgresql",
+    database: "bookorbit",
+	:host => 'localhost',
+:port => '5432',
+:username => 'bookorbit',
+:password => 'asdf'
+    #database: "postgres://vagrant:@localhost:5433/bookorbit"
+  }
 
   # Load all models from app/models, using autoload instead of require
   # See http://www.rubyinside.com/ruby-techniques-revealed-autoload-1652.html

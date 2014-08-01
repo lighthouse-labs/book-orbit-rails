@@ -66,8 +66,12 @@
                         </form>
                     </span>
                   <% b_url = append_http(bookmark.url) %>
-                    <h4><a href="<%= b_url %>" title="<%= get_title(b_url) %>" target="_blank"><%= get_title(b_url) %></a></h4>
-                    <h5><a href="<%= b_url %>" title="<%= b_url %>" target="_blank"><%= b_url %></a></h5>
+
+                  <% page = Nokogiri::HTML(open(b_url)) %>
+                    <h4><a href="<%= b_url %>" title="<%= get_title(page) %>" target="_blank"><%= get_title(page) %></a></h4>
+                    <h6><a href="<%= b_url %>" title="<%= b_url %>" target="_blank"><%= b_url %></a></h6>
+                    <h6><%= get_keywords(page) %></h6>
+                    <h6><%= get_description(page) %></h6>
                     <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
                       <p class="meta">Collections:
                     <% users_bookmark.collections.each do |collection| %>

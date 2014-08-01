@@ -89,9 +89,17 @@ helpers do
 
   #Nokogiri helpers
 
-  def get_title(url)
-    page = Nokogiri::HTML(open(url))
+  def get_title(page)
     page.css('title').inner_text
+  end
+
+  def get_keywords(page)
+    keywords_meta = page.xpath('//meta[@name="keywords"]/@content')
+    keywords_meta.map(&:value).map(&:downcase).join(', ')
+  end
+
+  def get_description(page)
+    page.xpath('//meta[@name="description"]/@content')
   end
 
 end

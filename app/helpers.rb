@@ -87,4 +87,11 @@ helpers do
     end
   end
 
+  #Nokogiri helpers
+
+  def get_title(url)
+    page = Nokogiri::HTML(open(url))
+    page.css('title').inner_text
+  end
+
 end

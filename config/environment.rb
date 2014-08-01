@@ -1,4 +1,6 @@
 require 'rubygems'
+require 'nokogiri'
+require 'open-uri'
 require 'bundler/setup'
 
 require 'active_support/all'

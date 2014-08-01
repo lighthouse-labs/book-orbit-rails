@@ -11,6 +11,7 @@ gem 'sinatra-activerecord'
 gem 'puma'
 gem 'tux'
 gem 'pg'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'pry'

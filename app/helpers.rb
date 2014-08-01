@@ -22,7 +22,7 @@ helpers do
         end
       end
     end
-    collections = collections.uniq
+    collections = collections.uniq.sort
 
     if collections.include? 'uncategorized'
       index = collections.index("uncategorized")

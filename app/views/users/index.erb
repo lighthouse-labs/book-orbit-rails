@@ -7,9 +7,9 @@
 
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-        <h3><a href="/<%= @user.username %>"><%= @user.username %></a><br>
-        <small><a href="#">password protect</a></small>
+        <h3><a href="/<%= @user.username %>"><%= @user.username %></a>
         </h3>
+        <hr>
             <form method="post" action="/<%= @user.username %>" class="pure-form">
                 <fieldset>
                     <input type="text" name="url" placeholder="Add something..." required>
@@ -20,8 +20,6 @@
                     <input type="hidden" name="user">
                 </fieldset>
             </form>
-
-            <hr>
 
             <form method="get" action="/<%= @user.username %>/search" class="pure-form">
                 <fieldset>

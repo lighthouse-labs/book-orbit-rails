@@ -9,6 +9,11 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
+#layout.home {
+  background: #333;
+  height: 100%;
+}
+
 .pure-g [class *="pure-u"] {
   font-family: 'Quicksand' sans-serif;
 }

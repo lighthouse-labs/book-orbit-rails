@@ -53,6 +53,8 @@
               bookmarks = @user.bookmarks
             end%>
 
+            <% bookmarks = bookmarks.reverse %>
+
             <div class="pure-g">
             <% bookmarks.each do |bookmark| %>
               <div class="pure-u-1-3">

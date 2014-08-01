@@ -75,6 +75,7 @@ hr {
 /* Content Layout */
 
 .bookmark {
+  position: relative;
   margin: 15px 15px 0px 0px;
   padding: 10px 15px 1px;
   background: #fff;
@@ -94,6 +95,13 @@ hr {
 
 .bookmark h4 a {
   font-weight: bold;
+}
+
+.delete {
+  display: none;
+  position: absolute;
+  top: -2px;
+  right: 5px;
 }
 
 /* Forms */

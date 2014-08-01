@@ -59,9 +59,10 @@
 
             <% bookmarks = bookmarks.reverse %>
 
-            <div class="pure-g">
+            <div class="bookmarks-container">
             <% bookmarks.each do |bookmark| %>
-              <div class="pure-u-1-2">
+            
+              <div class="pure-u-1">
                 <div class="bookmark">
                     <span class="delete">
                         <form method="post" action="/<%= @user.username %>/bookmarks/delete">
@@ -82,9 +83,10 @@
                     </p>
                 </div>
               </div>
-            <% end %>
 
+            <% end %>
             </div>
+            
         </div>
     </div>
 </div>

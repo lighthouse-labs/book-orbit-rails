@@ -55,8 +55,14 @@
             <% bookmarks = bookmarks.reverse %>
             <div class="pure-g">
             <% bookmarks.each do |bookmark| %>
-              <div class="pure-u-1-3">
+              <div class="pure-u-1-2">
                 <div class="bookmark">
+                    <span class="delete">
+                        <form method="post" action="/<%= @user.username %>/bookmarks/delete">
+                            <input type="hidden" name="url" value="<%= bookmark.url %>">
+                            <button type="submit" class="delete-button">x</button>
+                        </form>
+                    </span>
                     <h4><a href="<%= bookmark.url %>" title="<%= bookmark.url%>" target="_blank"><%= bookmark.url%></a></h4>
                     <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
                       <p class="meta">Collections:

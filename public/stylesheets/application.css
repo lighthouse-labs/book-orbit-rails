@@ -136,6 +136,10 @@ a.hide {
   right: 5px;
 }
 
+.delete-collection {
+  position: relative;
+}
+
 button.delete-button {
   padding: 0px 4px 2px;
   font-family: 'Quicksand', sans-serif;
@@ -149,6 +153,26 @@ button.delete-button:hover {
   background-color: #333;
   border: 1px solid #fff;
   color: #fff;
+}
+
+button.delete-button.delete-button-collection {
+  float: left;
+  padding: 0px 4px 2px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.7em;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 0px;
+}
+
+button.delete-button.delete-button-collection:hover {
+  background-color: #333;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+form.delete-collection-form {
+  display: inline;
 }
 
 /* Forms */

@@ -42,6 +42,21 @@ get '/:username/collections/:collection' do
 
 end
 
+post '/:username/bookmarks/edit' do
+  name = params[:username]
+  @user = User.find_by(username: name)
+  bookmark = Bookmark.find_by(url: params[:url])
+  collection = Collection.find_by(name: params[:collection_name])
+
+  users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
+
+  users_bookmark_in_collection = BookmarksUsersCollection.where(bookmarks_user_id: users_bookmark.id).where(collection_id: collection.id).first
+
+  users_bookmark_in_collection.destroy
+
+  redirect :"/#{params[:username]}"
+end
+
 post '/:username/bookmarks/delete' do
   name = params[:username]
   @user = User.find_by(username: name)

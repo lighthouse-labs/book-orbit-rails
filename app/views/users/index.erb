@@ -35,6 +35,13 @@
                       <p class="meta">Collections:
                     <% users_bookmark.collections.each do |collection| %>
                       <a href="/<%= @user.username %>/collections/<%= collection.name %>"><%= collection.name%></a>
+                      <span class="delete-collection">
+                       <form method="post" action="/<%= @user.username %>/bookmarks/edit" class="delete-collection-form">
+                            <input type="hidden" name="url" value="<%= bookmark.url %>">
+                            <input type="hidden" name="collection_name" value="<%= collection.name %>">
+                            <button type="submit" class="delete-button delete-button-collection">x</button>
+                        </form>
+                       </span>
                     <% end %>
                     </p>
                 </div>

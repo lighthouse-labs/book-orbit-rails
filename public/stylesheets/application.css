@@ -153,6 +153,10 @@ a.hide {
   margin-right: 1em;
 }
 
+.add-to {
+  display: none;
+}
+
 .delete-collection {
   display: none;
   margin-left: -0.5em;

@@ -26,15 +26,19 @@ $(document).ready(function() {
   $( ".pure-u-1" ).on("mouseenter", function() {
     $(this).find(".delete").show(200);
     $(this).find(".delete-collection").show(200);
+    $(this).find(".add-to").show(200);
   }).on("mouseleave",function(){
     $(this).find(".delete").hide(200);
     $(this).find(".delete-collection").hide(200);
+    $(this).find(".add-to").hide(200);
   }); 
   $( ".pure-u-md-1-2" ).on("mouseenter", function() {
     $(this).find(".delete").show(200);
     $(this).find(".delete-collection").show(200);
+    $(this).find(".add-to").show(200);
   }).on("mouseleave",function(){
     $(this).find(".delete").hide(200);
     $(this).find(".delete-collection").hide(200);
+    $(this).find(".add-to").hide(200);
   });
 });

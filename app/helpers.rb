@@ -4,6 +4,16 @@ helpers do
     !session[:id].nil?
   end
 
+  def password_protected?
+    !@user.password.nil?
+  end
+
+  def redirect_if_not_permitted
+    if password_protected? && session[:id] != @user.id
+      redirect :"/#{params[:username]}/login"
+    end
+  end
+
   def all_collections
     collections = []
     BookmarksUser.all.each do |row|

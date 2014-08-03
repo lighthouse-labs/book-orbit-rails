@@ -18,6 +18,10 @@ body {
   height: 100%;
 }
 
+.clear {
+  clear:both;
+}
+
 .pure-g [class *="pure-u"] {
   font-family: 'Quicksand' sans-serif;
 }
@@ -144,6 +148,17 @@ a.hide {
   position: relative;
 }
 
+.meta {
+  float: left;
+  margin-right: 1em;
+}
+
+.delete-collection {
+  display: none;
+  margin-left: -0.5em;
+  margin-top: 0.8em;
+}
+
 button.delete-button {
   padding: 0px 4px 2px;
   font-family: 'Quicksand', sans-serif;
@@ -160,7 +175,6 @@ button.delete-button:hover {
 }
 
 button.delete-button.delete-button-collection {
-  float: left;
   padding: 0px 4px 2px;
   font-family: 'Quicksand', sans-serif;
   font-size: 0.7em;

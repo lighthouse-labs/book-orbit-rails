@@ -19,19 +19,6 @@ $(document).ready(function() {
 
   $( ".add-collection-input" ).on("click", function(e){
     console.log('add collection clicked');
-    e.preventDefault();
+    e.preventDefault;
     $(this).parent().append(collection_input);
   });
-
-  $( ".pure-u-1" ).on("mouseenter", function() {
-    $(this).find(".delete").show(200);
-  }).on("mouseleave",function(){
-    $(this).find(".delete").hide(200);
-  });
-  $( ".pure-u-md-1-2" ).on("mouseenter", function() {
-    $(this).find(".delete").show(200);
-  }).on("mouseleave",function(){
-    $(this).find(".delete").hide(200);
-  });
-
-});

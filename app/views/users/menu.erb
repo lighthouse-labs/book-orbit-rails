@@ -10,7 +10,7 @@
         <h3><a href="/<%= @user.username %>"><%= @user.username %></a>
         </h3>
 
-        <% if !logged_in? %>
+        <% if !logged_in? || @user.id != session[:id] %>
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up / Login"></img></a>
         <% else %>
         <a href="/<%= @user.username %>/logout"><img src="/img/locked.png" alt="Logout"></img></a>
@@ -21,6 +21,8 @@
         <p><%= @existing_bookmark.url %> already exists.</p>
         <% end %>
             <form method="post" action="/<%= @user.username %>" class="pure-form">
+
+            <% if @user.id == session[:id] || @user.password.nil? %>
                 <fieldset>
                     <input type="text" name="url" placeholder="Add url..." required>
                     <a class="pure-button button-sidebar show-form">+</a>
@@ -30,10 +32,11 @@
                     </div>
                     <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
                 </fieldset>
-
                     <input type="hidden" name="user">
             </form>
             <hr>
+            <% end %>
+
             <form method="get" action="/<%= @user.username %>/search" class="pure-form">
                 <fieldset>
                     <input type="text" name="search_string" placeholder="Find something..." required>

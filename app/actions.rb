@@ -68,6 +68,7 @@ get '/:username/' do
 end
 
 get '/:username/search' do
+
   @search_array = params[:search_string].split(" ")
   name = params[:username]
   @user = User.find_by(username: name)

@@ -9,6 +9,13 @@
         <div class="pure-menu pure-menu-open">
         <h3><a href="/<%= @user.username %>"><%= @user.username %></a>
         </h3>
+
+        <% if !logged_in? %>
+        <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up / Login"></img></a>
+        <% else %>
+        <a href="/<%= @user.username %>/logout"><img src="/img/locked.png" alt="Logout"></img></a>
+        <% end %>
+
         <hr>
         <% if @existing_bookmark %>
         <p><%= @existing_bookmark.url %> already exists.</p>
@@ -23,7 +30,7 @@
                     </div>
                     <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
                 </fieldset>
-                    
+
                     <input type="hidden" name="user">
             </form>
             <hr>

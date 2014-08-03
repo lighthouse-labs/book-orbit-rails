@@ -2,6 +2,10 @@
 @import 'side-menu.css';
 @import url(http://fonts.googleapis.com/css?family=Quicksand);
 
+#menu img {
+  height: 30px;
+}
+
 /* Layout */
 
 body {

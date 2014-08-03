@@ -1,5 +1,9 @@
 helpers do
 
+  def logged_in?
+    !session[:id].nil?
+  end
+
   def all_collections
     collections = []
     BookmarksUser.all.each do |row|

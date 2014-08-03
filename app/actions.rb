@@ -3,6 +3,57 @@ get '/' do
   erb :index
 end
 
+## Auth
+
+get '/:username/logout' do
+
+  session[:id] = nil
+  redirect :"/#{params[:username]}"
+
+end
+
+get '/:username/login' do
+
+  name = params[:username]
+  @user = User.find_by(username: name)
+
+  if @user.password.nil?
+    erb :'users/signup'
+  else
+    erb :'users/login'
+  end
+
+end
+
+post '/:username/login' do
+
+  name = params[:username]
+  @user = User.find_by(username: name)
+
+  if @user.password == params[:password]
+    session[:id] = @user.id
+    redirect :"/#{params[:username]}"
+  else
+    erb :'users/login-error'
+  end
+
+end
+
+post '/:username/password-protect' do
+
+  name = params[:username]
+  @user = User.find_by(username: name)
+
+  @user.update(password: params[:password]) # TODO: add validation?
+  session[:id] = @user.id
+
+  redirect :"/#{params[:username]}"
+
+end
+
+####
+
+
 get '/:username' do
   name = params[:username]
   if !user_exists?(name)

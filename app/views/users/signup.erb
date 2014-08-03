@@ -1,0 +1,15 @@
+<%= erb :'users/menu' %>
+
+    <div id="main">
+
+        <div class="content">
+
+          <form method="post" action="/<%= @user.username %>/password-protect">
+              <p>To prevent others from modifying this page, please choose a password</p>
+              <input type="password" name="password" value="">
+
+              <input type="submit" value="Submit">
+          </form>
+
+        </div>
+    </div>

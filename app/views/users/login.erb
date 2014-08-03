@@ -1,0 +1,15 @@
+<%= erb :'users/menu' %>
+
+    <div id="main">
+
+        <div class="content">
+
+          <form method="post" action="/<%= @user.username %>/login">
+              <p>Please enter your password</p>
+              <input type="password" name="password" value="">
+
+              <input type="submit" value="Submit">
+          </form>
+
+        </div>
+    </div>

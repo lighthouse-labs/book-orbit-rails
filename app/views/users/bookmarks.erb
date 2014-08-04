@@ -1,4 +1,4 @@
-<% @bookmarks = @bookmarks.reverse %>
+<% @bookmarks = @bookmarks.reverse.uniq %>
 
 <div class="bookmarks-container">
 <% @bookmarks.each do |bookmark| %>

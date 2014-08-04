@@ -7,7 +7,7 @@
 
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-        <h3><a href="/<%= @user.username %>"><%= @user.username %></a>
+        <h3><a href="/<%= @user.username %>" class="clear"><%= @user.username %></a>
         </h3>
 
         <% if !logged_in? || @user.id != session[:id] %>

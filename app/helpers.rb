@@ -81,6 +81,7 @@ helpers do
     Bookmark.all.each do |bookmark|
       if BookmarksUser.where(bookmark_id: bookmark.id).where(user_id: @user.id).first
         @search_results << bookmark if bookmark.url =~ /#{@matcher}/
+        @search_results << bookmark if bookmark.desc =~ /#{@matcher}/
       end
     end
 

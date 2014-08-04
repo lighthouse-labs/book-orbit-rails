@@ -146,8 +146,6 @@ post '/:username' do
   if Bookmark.find_by(url: url).nil?
     page = Nokogiri::HTML(open(url))
 
-    puts "Got socket error: #{se}"
-
     # if nokogiri parses in an empty title, set title = url
     title = get_title(page)
     title = url if title.empty?

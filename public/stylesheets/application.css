@@ -6,6 +6,11 @@
   height: 30px;
 }
 
+#menu h3 a {
+  float: left;
+  margin-right: 10px;
+}
+
 /* Layout */
 
 body {

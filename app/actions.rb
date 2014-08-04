@@ -189,7 +189,7 @@ post '/:username' do
     end
   end
 
-  rescue SocketError, URI::InvalidURIError => se
+  rescue SocketError, URI::InvalidURIError, RuntimeError => se
     puts "Got socket error: #{se}"
     @url_is_invalid = true
   end

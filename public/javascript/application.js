@@ -31,6 +31,7 @@ $(document).ready(function() {
     $(this).find(".delete").hide(200);
     $(this).find(".delete-collection").hide(200);
     $(this).find(".add-to").hide(200);
+    $(this).find(".add-collection").hide(200);
   });
   $( ".pure-u-md-1-2" ).on("mouseenter", function() {
     $(this).find(".delete").show(200);
@@ -40,5 +41,12 @@ $(document).ready(function() {
     $(this).find(".delete").hide(200);
     $(this).find(".delete-collection").hide(200);
     $(this).find(".add-to").hide(200);
+    $(this).find(".add-collection").hide(200);
   });
+
+  $( ".bookmark" ).on("click", ".add-to", function(){
+
+    $(this).next().show(100);
+    $(this).hide(100);
+  }).on();
 });

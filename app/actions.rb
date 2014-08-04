@@ -98,13 +98,25 @@ post '/:username/bookmarks/edit' do
   name = params[:username]
   @user = User.find_by(username: name)
   bookmark = Bookmark.find_by(url: params[:url])
-  collection = Collection.find_by(name: params[:collection_name])
 
   users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
 
-  users_bookmark_in_collection = BookmarksUsersCollection.where(bookmarks_user_id: users_bookmark.id).where(collection_id: collection.id).first
+  if params[:collection_name]
+    collection = Collection.find_by(name: params[:collection_name])
+    users_bookmark_in_collection = BookmarksUsersCollection.where(bookmarks_user_id: users_bookmark.id).where(collection_id: collection.id).first
+    users_bookmark_in_collection.destroy
+  end
 
-  users_bookmark_in_collection.destroy
+  if params[:add_collection]
+      collection = params[:add_collection]
+      if collection_exists?(collection)
+        collection = Collection.find_by(name: collection)
+      else
+        # Otherwise create the new collection
+        collection = Collection.create(name: collection)
+      end
+    users_bookmark.collections << collection
+  end
 
   redirect :"/#{params[:username]}"
 end

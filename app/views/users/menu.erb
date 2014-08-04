@@ -20,9 +20,9 @@
         <% if @existing_bookmark %>
         <p><%= @existing_bookmark.url %> already exists.</p>
         <% end %>
-            <form method="post" action="/<%= @user.username %>" class="pure-form">
 
             <% if @user.id == session[:id] || @user.password.nil? %>
+            <form method="post" action="/<%= @user.username %>" class="pure-form">
                 <fieldset>
                     <input type="text" name="url" placeholder="Add url..." required>
                     <a class="pure-button button-sidebar show-form">+</a>

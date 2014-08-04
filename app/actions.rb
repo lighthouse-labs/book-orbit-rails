@@ -126,8 +126,6 @@ post '/:username/bookmarks/delete' do
   name = params[:username]
   @user = User.find_by(username: name)
 
-  redirect_if_not_permitted
-
   bookmark = Bookmark.find_by(url: params[:url])
   users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
   users_bookmark.destroy
@@ -138,8 +136,6 @@ end
 post '/:username' do
   name = params[:username]
   @user = User.find_by(username: name)
-
-  redirect_if_not_permitted
 
   # Append the http:// if it does not exist in the submitted url
   url = append_http(params[:url])

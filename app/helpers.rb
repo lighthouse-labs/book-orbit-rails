@@ -95,8 +95,10 @@ helpers do
   end
 
   def append_http(url)
+
     if (url =~ /^http:\/\// ||
-        url =~ /^https:\/\//)
+        url =~ /^https:\/\// ||
+        url.nil?)
       url
     else
       url.insert(0, "http://")
@@ -111,7 +113,9 @@ helpers do
 
   def get_keywords(page)
     keywords_meta = page.xpath('//meta[@name="keywords"]/@content')
-    keywords_meta.map(&:value).map(&:downcase).join(', ')
+    kw = keywords_meta.map(&:value).map(&:downcase).join(', ')
+    # quick fix that abandon keywords that end with ","
+    return nil if kw.last == ','
   end
 
   def get_desc(page)

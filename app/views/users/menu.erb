@@ -21,6 +21,10 @@
         <p><%= @existing_bookmark.url %> already exists.</p>
         <% end %>
 
+        <% if @url_is_invalid %>
+        <p>URL is invalid, please try again.</p>
+        <% end %>
+
             <% if @user.id == session[:id] || @user.password.nil? %>
             <form method="post" action="/<%= @user.username %>" class="pure-form">
                 <fieldset>

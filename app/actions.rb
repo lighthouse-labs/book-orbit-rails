@@ -141,9 +141,12 @@ post '/:username' do
   url = append_http(params[:url])
 
   # If url does not exist in Bookmark table, create it
-  if Bookmark.find_by(url: url).nil?
+  begin
 
+  if Bookmark.find_by(url: url).nil?
     page = Nokogiri::HTML(open(url))
+
+    puts "Got socket error: #{se}"
 
     # if nokogiri parses in an empty title, set title = url
     title = get_title(page)
@@ -186,6 +189,11 @@ post '/:username' do
       end
       users_bookmark.collections << collection
     end
+  end
+
+  rescue SocketError => se
+    puts "Got socket error: #{se}"
+    @url_is_invalid = true
   end
 
   erb :'/users/index'

@@ -10,10 +10,12 @@
         <h3><a href="/<%= @user.username %>" class="clear"><%= @user.username %></a>
         </h3>
 
-        <% if !logged_in? || @user.id != session[:id] %>
-        <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up / Login"></img></a>
-        <% else %>
-        <a href="/<%= @user.username %>/logout"><img src="/img/locked.png" alt="Logout"></img></a>
+        <% if @user.password.nil? %>
+        <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
+        <% elsif @user.password && session[:id] == @user.id %>
+        <a href="/<%= @user.username %>/logout"><img src="/img/unlocked.png" alt="Log Out"></img></a>
+        <% elsif @user.password && session[:id].nil? %>
+        <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
         <% end %>
 
         <hr>

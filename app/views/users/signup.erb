@@ -4,12 +4,12 @@
 
         <div class="content">
 
-          <form method="post" action="/<%= @user.username %>/password-protect">
+          <form method="post" action="/<%= @user.username %>/password-protect" class="pure-form">
               <p>To claim this page and prevent others from modifying it -
               </br></br> Please choose a password:</p>
               <input type="password" name="password" value="">
 
-              <input type="submit" value="Submit">
+              <input type="submit" value="Submit" class="pure-button login-button">
           </form>
 
         </div>

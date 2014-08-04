@@ -212,6 +212,16 @@ button.add-button-collection {
   width: 100px;
 }
 
+.login-button {
+  background: #222;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.login-button:hover {
+  background: #333;
+}
+
 /* Forms */
 
 .pure-form input{

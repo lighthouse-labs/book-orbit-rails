@@ -45,7 +45,6 @@ $(document).ready(function() {
   });
 
   $( ".bookmark" ).on("click", ".add-to", function(){
-
     $(this).next().show(100);
     $(this).hide(100);
   }).on();

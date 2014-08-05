@@ -15,7 +15,7 @@
         </span>
       <% end %>
 
-      <% b_url = append_http(bookmark.url) %>
+      <% b_url = prepend_http(bookmark.url) %>
         <h4><a href="<%= b_url %>" title="<%= bookmark.title %>" target="_blank"><%= bookmark.title %></a></h4>
         <h6><a href="<%= b_url %>" title="<%= b_url %>" target="_blank"><%= b_url %></a></h6>
         <% unless bookmark.desc.nil? %>

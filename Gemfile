@@ -12,6 +12,7 @@ gem 'puma'
 gem 'tux'
 gem 'pg'
 gem 'nokogiri'
+gem 'open_uri_redirections'
 
 group :development, :test do
   gem 'pry'

@@ -95,11 +95,8 @@ helpers do
     end
   end
 
-  def append_http(url)
-
-    if (url =~ /^http:\/\// ||
-        url =~ /^https:\/\// ||
-        url.nil?)
+  def prepend_http(url)
+    if url =~ /^(http(s?):)?\/\//
       url
     else
       url.insert(0, "http://")

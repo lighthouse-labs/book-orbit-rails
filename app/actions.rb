@@ -138,19 +138,28 @@ post '/:username' do
   @user = User.find_by(username: name)
 
   # Append the http:// if it does not exist in the submitted url
-  url = append_http(params[:url])
+  url = prepend_http(params[:url])
 
   # If url does not exist in Bookmark table, create it
   begin
 
   if Bookmark.find_by(url: url).nil?
-    page = Nokogiri::HTML(open(url))
 
+    begin
+    page = Nokogiri::HTML(open(url, :allow_redirections => :safe))
     # if nokogiri parses in an empty title, set title = url
     title = get_title(page)
     title = url if title.empty?
 
     bookmark = Bookmark.create(url: url, title: title, keywords: get_keywords(page), desc: get_desc(page))
+
+    # Avoid using open-uri if the url returns a HTTP error
+    # Instead, use the url as the title
+    rescue OpenURI::HTTPError => he
+      puts "Got HTTP error: #{he}"
+      bookmark = Bookmark.create(url: url, title: url)
+    end
+
 
   else
     bookmark = Bookmark.find_by(url: url)
@@ -189,10 +198,11 @@ post '/:username' do
     end
   end
 
-  rescue SocketError, URI::InvalidURIError, RuntimeError => se
+  rescue SocketError, URI::InvalidURIError => se
     puts "Got socket error: #{se}"
     @url_is_invalid = true
-  end
+
+  end #end begin block
 
   erb :'/users/index'
 end

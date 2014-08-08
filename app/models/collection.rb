@@ -1,4 +1,4 @@
 class Collection < ActiveRecord::Base
-  belongs_to :bookmarks
-  has_many :libraries
+  belongs_to :bookmark
+  belongs_to :library
 end

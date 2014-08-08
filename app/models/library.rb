@@ -1,4 +1,4 @@
 class Library < ActiveRecord::Base
-  has_and_belongs_to_many :bookmarks
-  has_many :collections, :through => :bookmarks
+  has_many :collections
+  has_many :bookmarks, :through => :collections
 end

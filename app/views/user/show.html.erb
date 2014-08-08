@@ -8,11 +8,11 @@
 
             <% if @collection
               @bookmarks = users_bookmarks_in_collection
-            elsif @bookmarks
+            else
               @bookmarks = @user.bookmarks
             end %>
 
-           
+            <%= render 'bookmarks' %>
         </div>
     </div>
 </div>

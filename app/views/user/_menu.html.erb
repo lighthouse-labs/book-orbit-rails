@@ -10,17 +10,16 @@
         
         <h3><a href="/<%= @user.username %>" class="clear"><%= @user.username %></a>
         </h3>
-        <% if @test %>
         <% if @user.password.nil? %>
-        <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
+        <a href="/<%= @user.username %>/login"><img src="unlocked.png" alt="Sign up"></img></a>
         <% elsif @user.password && session[:id] == @user.id %>
-        <a href="/<%= @user.username %>/logout"><img src="/img/unlocked.png" alt="Log Out"></img></a>
+        <a href="/<%= @user.username %>/logout"><img src="unlocked.png" alt="Log Out"></img></a>
         <% elsif @user.password && session[:id].nil? %>
-        <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
+        <a href="/<%= @user.username %>/login"><img src="locked.png" alt="Log In"></img></a>
         <% elsif @user.password && session[:id] != @user.id %>
-        <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
+        <a href="/<%= @user.username %>/login"><img src="locked.png" alt="Log In"></img></a>
         <% else %>
-        <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
+        <a href="/<%= @user.username %>/login"><img src="unlocked.png" alt="Sign up"></img></a>
         <% end %>
 
         <hr>
@@ -62,6 +61,5 @@
                 <li><a href="/<%= @user.username %>/collections/<%= collection %>"><%= collection %></a></li>
               <% end %>
             </ul>
-          <% end %>
         </div>
     </div>

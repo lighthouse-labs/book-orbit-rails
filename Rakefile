@@ -1,12 +1,6 @@
-require 'rake'
-require "sinatra/activerecord/rake"
-require ::File.expand_path('../config/environment', __FILE__)
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-#Rake::Task["db:create"].clear
-#Rake::Task["db:drop"].clear
+require File.expand_path('../config/application', __FILE__)
 
-
-desc 'Retrieves the current schema version number'
-task "db:version" do
-  puts "Current version: #{ActiveRecord::Migrator.current_version}"
-end
+Rails.application.load_tasks

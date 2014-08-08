@@ -1,5 +1,4 @@
-# Require config/environment.rb
-require ::File.expand_path('../config/environment',  __FILE__)
+# This file is used by Rack-based servers to start the application.
 
-set :app_file, __FILE__
-run Sinatra::Application
+require ::File.expand_path('../config/environment',  __FILE__)
+run Rails.application

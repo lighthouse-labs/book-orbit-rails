@@ -58,7 +58,7 @@
 
             <ul>
               <% all_user_collections.each do |collection| %>
-                <li><a href="/<%= @user.username %>/collections/<%= collection %>"><%= collection %></a></li>
+                <li><a href="/<%= @user.username %>/?collection=<%= collection %>"><%= collection %></a></li>
               <% end %>
             </ul>
         </div>

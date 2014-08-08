@@ -3,6 +3,10 @@ class UserController < ApplicationController
   end
 
   def show
+    if params[:collection]
+      @collection = params[:collection]
+    end
+
     if @user = User.find_by(username: params[:username])
     else
       create

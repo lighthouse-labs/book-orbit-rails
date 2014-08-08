@@ -14,7 +14,7 @@ default: &default
 
 development:
   <<: *default
-  database: bookorbit_development
+  database: bookorbit
   username: bookorbit
   password: asdf
 

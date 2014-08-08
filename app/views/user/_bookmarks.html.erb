@@ -28,7 +28,7 @@
           <p class="meta">Collections: </p>
         <% users_bookmark.collections.each do |collection| %>
           <p class="meta">
-            <a href="/<%= @user.username %>/collections/<%= collection.name %>"><%= collection.name%></a>
+            <a href="/<%= @user.username %>/?collection=<%= collection.name %>"><%= collection.name%></a>
           </p>
 
           <% if @user.id == session[:id] || @user.password.nil? %>

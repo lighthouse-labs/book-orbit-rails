@@ -1,0 +1,67 @@
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+        
+        <h3><a href="/<%= @user.username %>" class="clear"><%= @user.username %></a>
+        </h3>
+        <% if @test %>
+        <% if @user.password.nil? %>
+        <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
+        <% elsif @user.password && session[:id] == @user.id %>
+        <a href="/<%= @user.username %>/logout"><img src="/img/unlocked.png" alt="Log Out"></img></a>
+        <% elsif @user.password && session[:id].nil? %>
+        <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
+        <% elsif @user.password && session[:id] != @user.id %>
+        <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
+        <% else %>
+        <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
+        <% end %>
+
+        <hr>
+        <% if @existing_bookmark %>
+        <p><%= @existing_bookmark.url %> already exists.</p>
+        <% end %>
+
+        <% if @url_is_invalid %>
+        <p>URL is invalid, please try again.</p>
+        <% end %>
+
+            <% if @user.id == session[:id] || @user.password.nil? %>
+            <form method="post" action="/<%= @user.username %>" class="pure-form">
+                <fieldset>
+                    <input type="text" name="url" placeholder="Add url..." required>
+                    <a class="pure-button button-sidebar show-form">+</a>
+                    <div class="collection-inputs hide">
+                        <p>Collections:</p>
+                        <input type="text" name="collection[]" class="collection-input" placeholder="Collection name"><span class="add-collection-input">+</span>
+                    </div>
+                    <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
+                </fieldset>
+                    <input type="hidden" name="user">
+            </form>
+            <hr>
+            <% end %>
+
+            <form method="get" action="/<%= @user.username %>/search" class="pure-form">
+                <fieldset>
+                    <input type="text" name="search_string" placeholder="Find something..." required>
+                    <button type="submit" class="pure-button button-sidebar">S</button>
+                </fieldset>
+            </form>
+
+            <h4>COLLECTIONS</h4>
+
+            <ul>
+              <% all_user_collections.each do |collection| %>
+                <li><a href="/<%= @user.username %>/collections/<%= collection %>"><%= collection %></a></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+    </div>

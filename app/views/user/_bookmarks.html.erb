@@ -1,0 +1,62 @@
+<% @bookmarks = @bookmarks.reverse.uniq %>
+
+<div class="bookmarks-container">
+<% @bookmarks.each do |bookmark| %>
+
+  <div class="pure-u-1">
+    <div class="bookmark">
+
+      <% if @user.id == session[:id] || @user.password.nil? %>
+        <span class="delete">
+            <form method="post" action="/<%= @user.username %>/bookmarks/delete">
+                <input type="hidden" name="url" value="<%= bookmark.url %>">
+                <button type="submit" class="delete-button">x</button>
+            </form>
+        </span>
+      <% end %>
+
+      <% b_url = prepend_http(bookmark.url) %>
+        <h4><a href="<%= b_url %>" title="<%= bookmark.title %>" target="_blank"><%= bookmark.title %></a></h4>
+        <h6><a href="<%= b_url %>" title="<%= b_url %>" target="_blank"><%= b_url %></a></h6>
+        <% unless bookmark.desc.nil? %>
+          <h6><%= bookmark.desc %></h6>
+        <% end %>
+        <% unless bookmark.keywords.nil? %>
+        <h6><%= bookmark.keywords %></h6>
+        <% end %>
+        <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
+          <p class="meta">Collections: </p>
+        <% users_bookmark.collections.each do |collection| %>
+          <p class="meta">
+            <a href="/<%= @user.username %>/collections/<%= collection.name %>"><%= collection.name%></a>
+          </p>
+
+          <% if @user.id == session[:id] || @user.password.nil? %>
+            <span class="meta delete-collection">
+             <form method="post" action="/<%= @user.username %>/bookmarks/edit" class="delete-collection-form">
+                  <input type="hidden" name="url" value="<%= bookmark.url %>">
+                  <input type="hidden" name="collection_name" value="<%= collection.name %>">
+                  <button type="submit" class="delete-button">x</button>
+              </form>
+             </span>
+          <% end %>
+        <% end %>
+
+        <% if @user.id == session[:id] || @user.password.nil? %>
+        <p class="meta add-to"><em>Add to collection</em></p>
+        <% end %>
+
+        <span class="meta add-collection">
+         <form method="post" action="/<%= @user.username %>/bookmarks/edit" class="add-collection-form">
+            <input type="hidden" name="url" value="<%= bookmark.url %>">
+            <input type="text" name="add_collection" class="input-add-collection">
+            <button type="submit" class="delete-button add-button">+</button>
+          </form>
+        </span>
+
+        <div class="clear"></div>
+    </div>
+  </div>
+
+<% end %>
+</div>

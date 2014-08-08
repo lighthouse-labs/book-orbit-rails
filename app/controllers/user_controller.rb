@@ -3,9 +3,7 @@ class UserController < ApplicationController
   end
 
   def show
-    if User.find_by(username: params[:username])
-      # do shit
-
+    if @user = User.find_by(username: params[:username])
     else
       create
     end

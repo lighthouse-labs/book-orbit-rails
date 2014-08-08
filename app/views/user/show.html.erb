@@ -1,1 +1,18 @@
-On the show.html.erb
+<%= render 'menu' %>
+
+    <div id="main">
+        <div class="content">
+            <h2><a href="/<%= @user.username%>">all collections</a> / <% if @collection %>
+                   <%= @collection %>
+                <% end %></h2>
+
+            <% if @collection
+              @bookmarks = users_bookmarks_in_collection
+            elsif @bookmarks
+              @bookmarks = @user.bookmarks
+            end %>
+
+            <%= # render 'bookmarks' %>
+        </div>
+    </div>
+</div>

@@ -23,4 +23,14 @@ class UserController < ApplicationController
     end
   end
 
+  def edit
+    add_bookmark if params[:add]
+  end
+
+  def add_bookmark
+  end
+
+  def edit_collections
+  end
+
 end

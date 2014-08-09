@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/:username', to: 'user#show'
+  post '/:username', to: 'user#edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,5 +1,5 @@
 module ApplicationHelper
-    def logged_in?
+  def logged_in?
     !session[:id].nil?
   end
 
@@ -102,20 +102,4 @@ module ApplicationHelper
     end
   end
 
-  #Nokogiri helpers
-
-  def get_title(page)
-    page.css('title').inner_text
-  end
-
-  def get_keywords(page)
-    keywords_meta = page.xpath('//meta[@name="keywords"]/@content')
-    kw = keywords_meta.map(&:value).map(&:downcase).join(', ')
-    # quick fix that abandon keywords that end with ","
-    return nil if kw.last == ','
-  end
-
-  def get_desc(page)
-    page.xpath('//meta[@name="description"]/@content').map(&:value).first
-  end
 end

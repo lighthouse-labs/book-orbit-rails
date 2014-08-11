@@ -12,11 +12,12 @@
         </h3>
         <% if @user.password.nil? %>
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
-        <% elsif @user.password && session[:id] == @user.id %>
+        <% elsif @user.password && session[:users].include?(@user.id)%>
         <a href="/<%= @user.username %>/logout"><img src="/img/unlocked.png" alt="Log Out"></img></a>
-        <% elsif @user.password && session[:id].nil? %>
+        <%= link_to "Log out", session_path, method: :delete %>
+        <% elsif @user.password && session[:users].nil? %>
         <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
-        <% elsif @user.password && session[:id] != @user.id %>
+        <% elsif @user.password && !session[:users].include?(@user.id)%>
         <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
         <% else %>
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
@@ -31,16 +32,17 @@
         <p>URL is invalid, please try again.</p>
         <% end %>
 
-            <% if @user.id == session[:id] || @user.password.nil? %>
+            <% if session[:users].include?(@user.id) || @user.password.nil? %>
             <form method="post" action="/<%= @user.username %>" class="pure-form">
                 <fieldset>
-                    <input type="text" name="url" placeholder="Add url..." required>
-                    <a class="pure-button button-sidebar show-form">+</a>
-                    <div class="collection-inputs hide">
-                        <p>Collections:</p>
-                        <input type="text" name="collection[]" class="collection-input" placeholder="Collection name"><span class="add-collection-input">+</span>
-                    </div>
-                    <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
+                  <input type="hidden" name="add_bookmark" value="true">
+                  <input type="text" name="url" placeholder="Add url..." required>
+                  <a class="pure-button button-sidebar show-form">+</a>
+                  <div class="collection-inputs hide">
+                      <p>Collections:</p>
+                      <input type="text" name="collection[]" class="collection-input" placeholder="Collection name"><span class="add-collection-input">+</span>
+                  </div>
+                  <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
                 </fieldset>
                     <input type="hidden" name="user">
             </form>

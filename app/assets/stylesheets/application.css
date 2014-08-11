@@ -228,13 +228,13 @@ button.add-button-collection {
   width: 100px;
 }
 
-.login-button {
+input.login-button {
   background: #222;
   color: #fff;
   border: 1px solid #fff;
 }
 
-.login-button:hover {
+input.login-button:hover {
   background: #333;
 }
 

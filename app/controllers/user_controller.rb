@@ -16,11 +16,15 @@ class UserController < ApplicationController
   def login
     @user = User.find_by(username: params[:username])
     if @user.password.nil?
-      render :signup
+      render :add_password
     end
   end
 
-  def signup
+  def add_password
+
+  end
+
+  def search
 
   end
 

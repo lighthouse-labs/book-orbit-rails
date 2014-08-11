@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
 
   get '/:username', to: 'user#show'
+  get '/:username/search', to: 'user#search'
   get '/:username/login', to: 'user#login'
+  get '/:username/logout', to: 'sessions#destroy'
   post '/:username/login', to: 'sessions#create'
   post '/:username', to: 'user#edit'
 

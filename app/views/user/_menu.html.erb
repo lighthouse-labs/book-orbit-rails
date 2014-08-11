@@ -14,7 +14,6 @@
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
         <% elsif @user.password && session[:users].include?(@user.id)%>
         <a href="/<%= @user.username %>/logout"><img src="/img/unlocked.png" alt="Log Out"></img></a>
-        <%= link_to "Log out", session_path, method: :delete %>
         <% elsif @user.password && session[:users].nil? %>
         <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
         <% elsif @user.password && !session[:users].include?(@user.id)%>
@@ -54,7 +53,7 @@
             <form method="get" action="/<%= @user.username %>/search" class="pure-form">
                 <fieldset>
                     <input type="text" name="search_string" placeholder="Find something..." required>
-                    <button type="submit" class="pure-button button-sidebar">S</button>
+                    <button type="submit" class="pure-button button-sidebar">s</button>
                 </fieldset>
             </form>
 

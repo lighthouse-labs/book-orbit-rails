@@ -6,7 +6,7 @@
   <div class="pure-u-1">
     <div class="bookmark">
 
-      <% if session[:users].include?(@user.id) || @user.password.nil? %>
+      <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
         <span class="delete">
             <form method="post" action="/<%= @user.username %>/bookmarks/delete">
                 <input type="hidden" name="url" value="<%= bookmark.url %>">
@@ -31,7 +31,7 @@
             <a href="/<%= @user.username %>/?collection=<%= collection.name %>"><%= collection.name%></a>
           </p>
 
-          <% if session[:users].include?(@user.id) || @user.password.nil? %>
+          <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
             <span class="meta delete-collection">
              <form method="post" action="/<%= @user.username %>/bookmarks/edit" class="delete-collection-form">
                   <input type="hidden" name="url" value="<%= bookmark.url %>">
@@ -42,7 +42,7 @@
           <% end %>
         <% end %>
 
-        <% if session[:users].include?(@user.id) || @user.password.nil? %>
+        <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
         <p class="meta add-to"><em>Add to collection</em></p>
         <% end %>
 

@@ -12,11 +12,11 @@
         </h3>
         <% if @user.password.nil? %>
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
-        <% elsif @user.password && session[:users].include?(@user.id)%>
+        <% elsif @user.password && session[:users] && session[:users].include?(@user.id)%>
         <a href="/<%= @user.username %>/logout"><img src="/img/unlocked.png" alt="Log Out"></img></a>
-        <% elsif @user.password && session[:users].nil? %>
+        <% elsif @user.password && session[:users] && session[:users].nil? %>
         <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
-        <% elsif @user.password && !session[:users].include?(@user.id)%>
+        <% elsif @user.password && session[:users] && !session[:users].include?(@user.id)%>
         <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
         <% else %>
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
@@ -31,7 +31,7 @@
         <p>URL is invalid, please try again.</p>
         <% end %>
 
-            <% if session[:users].include?(@user.id) || @user.password.nil? %>
+            <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
             <form method="post" action="/<%= @user.username %>" class="pure-form">
                 <fieldset>
                   <input type="hidden" name="add_bookmark" value="true">

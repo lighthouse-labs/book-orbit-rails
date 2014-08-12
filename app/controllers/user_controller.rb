@@ -126,7 +126,10 @@ class UserController < ApplicationController
     render :show
   end
 
-  def edit_collections
+  def delete_collection
+    collection = Collection.find_by(name: params[:collection_name])
+    users_bookmark_in_collection = BookmarksUsersCollection.where(bookmarks_user_id: users_bookmark.id).where(collection_id: collection.id).first
+    users_bookmark_in_collection.destroy
   end
 
   protected

@@ -8,10 +8,12 @@
 
       <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
         <span class="delete">
-            <form method="post" action="/<%= @user.username %>/bookmarks/delete">
-                <input type="hidden" name="url" value="<%= bookmark.url %>">
-                <button type="submit" class="delete-button">x</button>
-            </form>
+          <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "pure-form") %>
+            <%= hidden_field_tag(:delete_bookmark, true) %>
+            <%= hidden_field_tag(:url, bookmark.url) %>
+            <input type="hidden" name="url" value="<%= bookmark.url %>">
+            <button type="submit" class="delete-button">x</button>
+          </form>
         </span>
       <% end %>
 

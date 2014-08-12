@@ -107,7 +107,8 @@ class UserController < ApplicationController
             collection = Collection.find_by(name: collection)
           else
             # Otherwise create the new collection
-            collection = Collection.create(name: collection)
+            valid_collection_name = convert_to_valid_collection_name(collection)
+            collection = Collection.create(name: valid_collection_name)
           end
         end
         users_bookmark.collections << collection

@@ -25,7 +25,7 @@ class UserController < ApplicationController
   end
 
   def search
-    @user = User.new(username: params[:username])
+    @user = User.find_by(username: params[:username])
     @search_array = params[:search_string].split(" ")
 
     @search_results = []
@@ -36,8 +36,6 @@ class UserController < ApplicationController
     end
 
     @search_results
-
-
   end
 
   def create
@@ -159,7 +157,6 @@ class UserController < ApplicationController
   def search_users_bookmarks
     Bookmark.all.each do |bookmark|
       if BookmarksUser.where(bookmark_id: bookmark.id).where(user_id: @user.id).first
-        binding.pry
         @search_results << bookmark if bookmark.url =~ /#{@matcher}/
         @search_results << bookmark if bookmark.desc =~ /#{@matcher}/
       end

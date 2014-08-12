@@ -39,10 +39,12 @@ class UserController < ApplicationController
   end
 
   def create
-    @user = User.new(username: params[:username])
+
+    valid_username = convert_to_valid_username(params[:username])
+    @user = User.new(username: valid_username)
 
     if @user.save
-      redirect_to "/#{@user.username}"
+      redirect_to "/#{valid_username}"
     else
       # go somewhere else
     end

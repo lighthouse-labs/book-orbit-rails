@@ -17,9 +17,9 @@
 
 
 // custom shit
+var ready = function() {
 
-$(document).ready(function() {
-
+  console.log("hi");
   var collection_input = "<input type='text' name='collection[]'' class='collection-input' placeholder='Collection name'>";
 
   $( "fieldset" ).one("focusin", "input[name='url']", function(){
@@ -68,4 +68,7 @@ $(document).ready(function() {
     $(this).next().show(100);
     $(this).hide(100);
   }).on();
-});
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

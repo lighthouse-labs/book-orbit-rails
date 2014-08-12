@@ -22,7 +22,7 @@
           <h6><%= bookmark.desc %></h6>
         <% end %>
         <% unless bookmark.keywords.nil? %>
-        <h6><%= bookmark.keywords %></h6>
+          <h6><%= bookmark.keywords %></h6>
         <% end %>
         <% users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first %>
           <p class="meta">Collections: </p>

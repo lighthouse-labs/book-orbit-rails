@@ -49,12 +49,13 @@ class UserController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(username: params[:username])
+
     add_bookmark if params[:add_bookmark]
+    delete_bookmark if params[:delete_bookmark]
   end
 
   def add_bookmark
-    @user = User.find_by(username: params[:username])
-
     # Append the http:// if it does not exist in the submitted url
     url = prepend_http(params[:url])
 
@@ -115,6 +116,13 @@ class UserController < ApplicationController
       @url_is_invalid = true
     end #end begin block
 
+    render :show
+  end
+
+  def delete_bookmark
+    bookmark = Bookmark.find_by(url: params[:url])
+    users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
+    users_bookmark.destroy
     render :show
   end
 

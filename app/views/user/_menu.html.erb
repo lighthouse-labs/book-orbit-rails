@@ -32,22 +32,25 @@
         <% end %>
 
             <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
-            <form method="post" action="/<%= @user.username %>" class="pure-form">
-                <fieldset>
-                  <input type="hidden" name="add_bookmark" value="true">
-                  <input type="text" name="url" placeholder="Add url..." required>
-                  <a class="pure-button button-sidebar show-form">+</a>
-                  <div class="collection-inputs hide">
-                      <p>Collections:</p>
-                      <input type="text" name="collection[]" class="collection-input" placeholder="Collection name"><span class="add-collection-input">+</span>
 
-                  <button type="submit" class="pure-button button-sidebar hide">+ Add</button>
-                  </div>
-                  
-                </fieldset>
-                    <input type="hidden" name="user">
+            <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "pure-form") %>
+              <fieldset>
+                <%= hidden_field_tag(:add_bookmark, true) %>
+                <%= text_field_tag(:url, "", :placeholder => "Add url...") %>
+                <a class="pure-button button-sidebar show-form">+</a>
+                <div class="collection-inputs hide">
+                      <p>Collections:</p>
+                      <%= text_field_tag("collection[]", "", :placeholder => "Collection Name", :class => "collection-input") %>
+                      <span class="add-collection-input">+</span>
+                      <%= submit_tag "+ Add", :class => 'pure-button button-sidebar hide' %>
+                </div>
+              </fieldset>
+              <div class="hide">
+                
+              </div>
             </form>
             <hr>
+            
             <% end %>
 
             <form method="get" action="/<%= @user.username %>/search" class="pure-form">

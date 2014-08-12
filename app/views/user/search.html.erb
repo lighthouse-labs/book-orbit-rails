@@ -1,0 +1,14 @@
+<%= render 'menu' %>
+
+    <div id="main">
+        <div class="content">
+            <h2>search results for <%= @search_array.join(" + ") %>:</h2>
+            <% @bookmarks = @search_results %>
+            <% if @bookmarks.empty? %>
+            <p>No bookmarks that match.</p>
+            <% end %>
+
+            <%= render 'bookmarks' %>
+        </div>
+    </div>
+</div>

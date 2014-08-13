@@ -50,10 +50,13 @@ class UserController < ApplicationController
   end
 
   def edit
+    
     @user = User.find_by(username: params[:username])
 
     add_bookmark if params[:add_bookmark]
     delete_bookmark if params[:delete_bookmark]
+    delete_collection if params[:delete_collection]
+    add_collection if params[:add_collection]
   end
 
   def add_bookmark
@@ -125,14 +128,32 @@ class UserController < ApplicationController
   def delete_bookmark
     bookmark = Bookmark.find_by(url: params[:url])
     users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
+    binding.pry
     users_bookmark.destroy
     render :show
   end
 
   def delete_collection
     collection = Collection.find_by(name: params[:collection_name])
+    bookmark = Bookmark.find_by(url: params[:url])
+    users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
     users_bookmark_in_collection = BookmarksUsersCollection.where(bookmarks_user_id: users_bookmark.id).where(collection_id: collection.id).first
     users_bookmark_in_collection.destroy
+    render :show
+  end
+
+  def add_collection
+    bookmark = Bookmark.find_by(url: params[:url])
+    users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
+    collection = params[:add_collection]
+    if collection_exists?(collection)
+      collection = Collection.find_by(name: collection)
+    else
+      # Otherwise create the new collection
+      collection = Collection.create(name: collection)
+    end
+    users_bookmark.collections << collection
+    render :show
   end
 
   protected

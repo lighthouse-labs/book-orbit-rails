@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def password_protected?
-    !@user.password.nil?
+    !@user.password_digest.nil?
   end
 
   def redirect_if_not_permitted

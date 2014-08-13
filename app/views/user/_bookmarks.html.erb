@@ -6,7 +6,7 @@
   <div class="pure-u-1">
     <div class="bookmark">
 
-      <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
+      <% if (session[:users] && session[:users].include?(@user.id)) || @user.password_digest.nil? %>
         <span class="delete">
           <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "pure-form") %>
             <%= hidden_field_tag(:delete_bookmark, true) %>
@@ -33,7 +33,7 @@
             <a href="/<%= @user.username %>/?collection=<%= collection.name %>"><%= collection.name%></a>
           </p>
 
-          <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
+          <% if (session[:users] && session[:users].include?(@user.id)) || @user.password_digest.nil? %>
             <span class="meta delete-collection">
               <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "delete-collection-form") %>
                 <%= hidden_field_tag(:delete_collection, true) %>
@@ -45,7 +45,7 @@
           <% end %>
         <% end %>
 
-        <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
+        <% if (session[:users] && session[:users].include?(@user.id)) || @user.password_digest.nil? %>
         <p class="meta add-to"><em>Add to collection</em></p>
         <% end %>
 

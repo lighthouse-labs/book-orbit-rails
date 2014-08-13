@@ -15,7 +15,7 @@ class UserController < ApplicationController
 
   def login
     @user = User.find_by(username: params[:username])
-    if @user.password.nil?
+    if @user.password_digest.nil?
       render :add_password
     end
   end
@@ -42,7 +42,6 @@ class UserController < ApplicationController
 
     valid_username = convert_to_valid_username(params[:username])
     @user = User.new(username: valid_username)
-
     if @user.save
       redirect_to "/#{valid_username}"
     else
@@ -82,6 +81,7 @@ class UserController < ApplicationController
       bookmark = Bookmark.find_by(url: url)
     end
     # If user already bookmarked it...
+
     if BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
       @existing_bookmark = bookmark
       # I want it to stop here and show the error. i.e. Don't proceed to add it to the user's bookmarks.

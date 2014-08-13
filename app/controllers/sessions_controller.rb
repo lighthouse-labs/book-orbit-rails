@@ -5,21 +5,21 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:username])
-    
-    if user && user.password
+
+    if user && user.password_digest
       session[:users] ||= []
       session[:users] << user.id
       redirect_to :controller => 'user', :action => 'show', :username => user.username
-    
+
     elsif user
-    
+
       # save password to user
       user.password = params[:password]
       if user.save
-        
+
         session[:users] ||= []
         session[:users] << user.id
-        
+
         redirect_to :controller => 'user', :action => 'show', :username => user.username
       end
     else

@@ -107,7 +107,8 @@ class UserController < ApplicationController
             collection = Collection.find_by(name: collection)
           else
             # Otherwise create the new collection
-            collection = Collection.create(name: collection)
+            valid_collection_name = convert_to_valid_collection_name(collection)
+            collection = Collection.create(name: valid_collection_name)
           end
         end
         users_bookmark.collections << collection
@@ -146,30 +147,6 @@ class UserController < ApplicationController
   end
 
   protected
-
-  def prepend_http(url)
-    if url =~ /^(http(s?):)?\/\//
-      url
-    else
-      url.insert(0, "http://")
-    end
-  end
-
-  # Nokogiri helprs
-  def get_title(page)
-    page.css('title').inner_text
-  end
-
-  def get_keywords(page)
-    keywords_meta = page.xpath('//meta[@name="keywords"]/@content')
-    kw = keywords_meta.map(&:value).map(&:downcase).join(', ')
-    # quick fix that abandon keywords that end with ","
-    return nil if kw.last == ','
-  end
-
-  def get_desc(page)
-    page.xpath('//meta[@name="description"]/@content').map(&:value).first
-  end
 
   def collection_exists?(collection)
     Collection.all.each do |x|

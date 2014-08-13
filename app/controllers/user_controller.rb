@@ -134,6 +134,17 @@ class UserController < ApplicationController
     users_bookmark_in_collection.destroy
   end
 
+  def add_collection
+    collection = params[:add_collection]
+    if collection_exists?(collection)
+      collection = Collection.find_by(name: collection)
+    else
+      # Otherwise create the new collection
+      collection = Collection.create(name: collection)
+    end
+    users_bookmark.collections << collection
+  end
+
   protected
 
   def prepend_http(url)

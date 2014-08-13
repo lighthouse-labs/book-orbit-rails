@@ -50,8 +50,9 @@
         <% end %>
 
         <span class="meta add-collection">
-         <form method="post" action="/<%= @user.username %>/bookmarks/edit" class="add-collection-form">
-            <input type="hidden" name="url" value="<%= bookmark.url %>">
+          <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "pure-form") %>
+          <%= hidden_field_tag(:add_collection, true) %>
+           <input type="hidden" name="url" value="<%= bookmark.url %>">
             <input type="text" name="add_collection" class="input-add-collection">
             <button type="submit" class="delete-button add-button">+</button>
           </form>

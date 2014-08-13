@@ -57,6 +57,7 @@ class UserController < ApplicationController
     add_bookmark if params[:add_bookmark]
     delete_bookmark if params[:delete_bookmark]
     delete_collection if params[:delete_collection]
+    add_collection if params[:add_collection]
   end
 
   def add_bookmark
@@ -142,6 +143,8 @@ class UserController < ApplicationController
   end
 
   def add_collection
+    bookmark = Bookmark.find_by(url: params[:url])
+    users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
     collection = params[:add_collection]
     if collection_exists?(collection)
       collection = Collection.find_by(name: collection)

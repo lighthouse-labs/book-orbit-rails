@@ -35,7 +35,7 @@
 
           <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
             <span class="meta delete-collection">
-              <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "delete-collection-form") %>
+              <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "pure-form") %>
                 <%= hidden_field_tag(:delete_collection, true) %>
                 <%= hidden_field_tag("collection_name", collection.name) %>
                 <input type="hidden" name="url" value="<%= bookmark.url %>">

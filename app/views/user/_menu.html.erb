@@ -12,6 +12,8 @@
         </h3>
         <% if @user.password.nil? %>
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
+        <% elsif @user.password && !session[:users]%>
+        <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
         <% elsif @user.password && session[:users] && session[:users].include?(@user.id)%>
         <a href="/<%= @user.username %>/logout"><img src="/img/unlocked.png" alt="Log Out"></img></a>
         <% elsif @user.password && session[:users] && session[:users].nil? %>

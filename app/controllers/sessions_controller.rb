@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     
     # If user exists and has a password
-    if @user && @user.password
+    if @user && @user.password_digest
 
-      if @user.password == params[:password]
+      if @user.password_digest == params[:password]
         session[:users] ||= []
         session[:users] << @user.id
         redirect_to :controller => 'user', :action => 'show', :username => @user.username

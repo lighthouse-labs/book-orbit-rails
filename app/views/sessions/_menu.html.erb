@@ -10,15 +10,15 @@
 
         <h3><a href="/<%= @user.username %>" class="clear"><%= @user.username %></a>
         </h3>
-        <% if @user.password.nil? %>
+        <% if @user.password_digest.nil? %>
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
-        <% elsif @user.password && !session[:users]%>
+        <% elsif @user.password_digest && !session[:users]%>
         <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
-        <% elsif @user.password && session[:users] && session[:users].include?(@user.id)%>
+        <% elsif @user.password_digest && session[:users] && session[:users].include?(@user.id)%>
         <a href="/<%= @user.username %>/logout"><img src="/img/unlocked.png" alt="Log Out"></img></a>
-        <% elsif @user.password && session[:users] && session[:users].nil? %>
+        <% elsif @user.password_digest && session[:users] && session[:users].nil? %>
         <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
-        <% elsif @user.password && session[:users] && !session[:users].include?(@user.id)%>
+        <% elsif @user.password_digest && session[:users] && !session[:users].include?(@user.id)%>
         <a href="/<%= @user.username %>/login"><img src="/img/locked.png" alt="Log In"></img></a>
         <% else %>
         <a href="/<%= @user.username %>/login"><img src="/img/unlocked.png" alt="Sign up"></img></a>
@@ -33,7 +33,7 @@
         <p>URL is invalid, please try again.</p>
         <% end %>
 
-            <% if (session[:users] && session[:users].include?(@user.id)) || @user.password.nil? %>
+            <% if (session[:users] && session[:users].include?(@user.id)) || @user.password_digest.nil? %>
 
             <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "pure-form") %>
               <fieldset>

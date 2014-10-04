@@ -44,7 +44,7 @@ end
 #..............................................
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'

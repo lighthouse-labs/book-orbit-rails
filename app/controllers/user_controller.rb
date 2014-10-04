@@ -51,7 +51,6 @@ class UserController < ApplicationController
   end
 
   def edit
-    
     @user = User.find_by(username: params[:username])
 
     add_bookmark if params[:add_bookmark]

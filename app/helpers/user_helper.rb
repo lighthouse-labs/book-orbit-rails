@@ -28,7 +28,9 @@ module UserHelper
   end
 
   def get_desc(page)
-    page.xpath('//meta[@name="description"]/@content').map(&:value).first.truncate(200)
+    if page.xpath('//meta[@name="description"]/@content').map(&:value).first
+      page.xpath('//meta[@name="description"]/@content').map(&:value).first.truncate(200)
+    end
   end
 
 end

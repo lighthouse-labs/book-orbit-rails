@@ -5,8 +5,6 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(username: params[:username])
-
-    binding.pry
     
     # If user exists and has a password
     if @user && @user.password

@@ -76,19 +76,6 @@ hr {
   font-size: 0.75em;
 }
 
-/* Home Page */
-
-.homepage {
-  text-align:center;
-}
-
-.homepage .logo {
-  max-height: 300px;
-  margin-left: -230px;
-  margin-top: 20%;
-}
-
-
 /* User Library Pages */
 
 /* Sidebar */

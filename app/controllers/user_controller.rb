@@ -127,7 +127,6 @@ class UserController < ApplicationController
   def delete_bookmark
     bookmark = Bookmark.find_by(url: params[:url])
     users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
-    binding.pry
     users_bookmark.destroy
     render :show
   end

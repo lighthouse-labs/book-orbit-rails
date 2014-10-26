@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     elsif @user
     
       # save password to user
-      @user.password = params[:password]
+      @user.password_digest = params[:password]
       if @user.save
         
         session[:users] ||= []

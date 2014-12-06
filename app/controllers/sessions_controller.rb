@@ -4,12 +4,13 @@ class SessionsController < ApplicationController
   end
 
   def create
+
     @user = User.find_by(username: params[:username])
     
     # If user exists and has a password
     if @user && @user.password_digest
 
-      if @user.password_digest == params[:password]
+      if @user.password_digest == params[:password_digest]
         session[:users] ||= []
         session[:users] << @user.id
         redirect_to :controller => 'user', :action => 'show', :username => @user.username
@@ -20,9 +21,9 @@ class SessionsController < ApplicationController
     
     # If user exists and does not have a password
     elsif @user
-    
-      # save password to user
-      @user.password_digest = params[:password]
+
+      # Save password to user
+      @user.password_digest = params[:password_digest]
       if @user.save
         
         session[:users] ||= []

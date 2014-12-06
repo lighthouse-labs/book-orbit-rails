@@ -1,12 +1,15 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   def index
   end
 
   def show
+    # Check if it was a query for a collection
+    # TODO: This needs to be moved to collections controller
     if params[:collection]
       @collection = params[:collection]
     end
 
+    # Find the user in the database. If it doesn't exist, create one
     if @user = User.find_by(username: params[:username])
     else
       create

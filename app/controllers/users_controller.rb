@@ -67,6 +67,7 @@ class UsersController < ApplicationController
 
     begin
 
+    # Check if the bookmark exists in the database
     if Bookmark.find_by(url: url).nil?
       begin
       page = Nokogiri::HTML(open(url, :allow_redirections => :safe))
@@ -85,8 +86,8 @@ class UsersController < ApplicationController
     else
       bookmark = Bookmark.find_by(url: url)
     end
-    # If user already bookmarked it...
 
+    # If user already bookmarked it...
     if BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
       @existing_bookmark = bookmark
       # I want it to stop here and show the error. i.e. Don't proceed to add it to the user's bookmarks.
@@ -151,6 +152,8 @@ class UsersController < ApplicationController
       collection = Collection.find_by(name: collection)
     else
       # Otherwise create the new collection
+      valid_collection_name = convert_to_valid_collection_name(collection)
+      collection = Collection.create(name: valid_collection_name)
       collection = Collection.create(name: collection)
     end
     users_bookmark.collections << collection

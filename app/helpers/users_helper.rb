@@ -14,6 +14,7 @@ module UsersHelper
 
   def convert_to_valid_collection_name(collection_name)
     # convert any invalid url collection names to a dash
+    collection_name = collection_name.gsub(/\s+\Z/,"")
     collection_name.gsub(/[^\w-]/,'-').downcase
   end
 

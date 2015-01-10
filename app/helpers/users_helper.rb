@@ -9,6 +9,7 @@ module UsersHelper
 
   def convert_to_valid_username(username)
     # remove any invalid url usernames
+    username = username.gsub(/\s+\Z/,"")
     username.gsub(/[^\w-]/,'').downcase
   end
 

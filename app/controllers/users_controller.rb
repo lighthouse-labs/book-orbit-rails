@@ -154,7 +154,6 @@ class UsersController < ApplicationController
       # Otherwise create the new collection
       valid_collection_name = convert_to_valid_collection_name(collection)
       collection = Collection.create(name: valid_collection_name)
-      collection = Collection.create(name: collection)
     end
     users_bookmark.collections << collection
     render :show

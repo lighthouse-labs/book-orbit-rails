@@ -146,11 +146,13 @@ class UsersController < ApplicationController
 
   def add_collection
     bookmark = Bookmark.find_by(url: params[:url])
+    # TODO: This users_bookmark can be refactored... into a model method?
     users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
     collection = params[:add_collection]
     if collection_exists?(collection)
       collection = Collection.find_by(name: collection)
     else
+      # TODO: This section of the if statement is repeated (see above), and should be a method inside the model.
       # Otherwise create the new collection
       valid_collection_name = convert_to_valid_collection_name(collection)
       collection = Collection.create(name: valid_collection_name)
@@ -161,6 +163,7 @@ class UsersController < ApplicationController
 
   protected
 
+  # TODO: This should be a class method for Collection
   def collection_exists?(collection)
     Collection.all.each do |x|
       return true if x.name == collection
@@ -169,6 +172,7 @@ class UsersController < ApplicationController
   end
 
   def search_users_bookmarks
+    # TODO: Can be refactored into the Bookmark model.
     Bookmark.all.each do |bookmark|
       if BookmarksUser.where(bookmark_id: bookmark.id).where(user_id: @user.id).first
         @search_results << bookmark if bookmark.url =~ /#{@matcher}/

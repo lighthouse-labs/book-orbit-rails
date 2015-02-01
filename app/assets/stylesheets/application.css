@@ -264,7 +264,10 @@ input.login-button:hover {
   background: none;
 }
 
-
+.collection-inputs p {
+  font-size: 0.8em;
+  text-align: center;
+}
 
 @media screen and (min-width: 48em) {
 

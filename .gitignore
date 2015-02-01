@@ -14,3 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore Mac DS_Store file
+.DS_Store
+app/.DS_Store
+app/assets/.DS_Store
+app/assets/javascript/.DS_Store
+public/.DS_Store
+public/javascript/.DS_Store

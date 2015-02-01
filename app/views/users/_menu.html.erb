@@ -35,7 +35,7 @@
 
             <% if (session[:users] && session[:users].include?(@user.id)) || @user.password_digest.nil? %>
 
-            <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "pure-form") %>
+            <%= form_tag({controller: "users", action: "edit"}, method: "post", class: "pure-form") %>
               <fieldset>
                 <%= hidden_field_tag(:add_bookmark, true) %>
                 <%= text_field_tag(:url, "", :placeholder => "Add url...") %>

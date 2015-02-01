@@ -1,12 +1,15 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   def index
   end
 
   def show
+    # Check if it was a query for a collection
+    # TODO: This needs to be moved to collections controller
     if params[:collection]
       @collection = params[:collection]
     end
 
+    # Find the user in the database. If it doesn't exist, create one
     if @user = User.find_by(username: params[:username])
     else
       create
@@ -64,6 +67,7 @@ class UserController < ApplicationController
 
     begin
 
+    # Check if the bookmark exists in the database
     if Bookmark.find_by(url: url).nil?
       begin
       page = Nokogiri::HTML(open(url, :allow_redirections => :safe))
@@ -82,8 +86,8 @@ class UserController < ApplicationController
     else
       bookmark = Bookmark.find_by(url: url)
     end
-    # If user already bookmarked it...
 
+    # If user already bookmarked it...
     if BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
       @existing_bookmark = bookmark
       # I want it to stop here and show the error. i.e. Don't proceed to add it to the user's bookmarks.
@@ -142,13 +146,16 @@ class UserController < ApplicationController
 
   def add_collection
     bookmark = Bookmark.find_by(url: params[:url])
+    # TODO: This users_bookmark can be refactored... into a model method?
     users_bookmark = BookmarksUser.where(user_id: @user.id).where(bookmark_id: bookmark.id).first
     collection = params[:add_collection]
     if collection_exists?(collection)
       collection = Collection.find_by(name: collection)
     else
+      # TODO: This section of the if statement is repeated (see above), and should be a method inside the model.
       # Otherwise create the new collection
-      collection = Collection.create(name: collection)
+      valid_collection_name = convert_to_valid_collection_name(collection)
+      collection = Collection.create(name: valid_collection_name)
     end
     users_bookmark.collections << collection
     render :show
@@ -156,6 +163,7 @@ class UserController < ApplicationController
 
   protected
 
+  # TODO: This should be a class method for Collection
   def collection_exists?(collection)
     Collection.all.each do |x|
       return true if x.name == collection
@@ -164,6 +172,7 @@ class UserController < ApplicationController
   end
 
   def search_users_bookmarks
+    # TODO: Can be refactored into the Bookmark model.
     Bookmark.all.each do |bookmark|
       if BookmarksUser.where(bookmark_id: bookmark.id).where(user_id: @user.id).first
         @search_results << bookmark if bookmark.url =~ /#{@matcher}/

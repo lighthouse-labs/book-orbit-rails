@@ -108,12 +108,6 @@ a.hide {
   cursor: pointer;
 }
 
-#menu a.show-form {
-  display: inline;
-  padding: .45em .9em;
-  color: #222;
-}
-
 /* Content Layout */
 
 .bookmarks-container {
@@ -260,6 +254,16 @@ input.login-button:hover {
   background: #fff;
   color: #222;
 }
+
+/* New Styles... */
+#show-form,
+#search {
+  display: inline;
+  padding: 0.5em;
+  color: #fff;
+  background: none;
+}
+
 
 
 @media screen and (min-width: 48em) {

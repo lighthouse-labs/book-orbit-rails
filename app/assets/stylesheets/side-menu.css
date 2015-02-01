@@ -212,6 +212,16 @@ small screens.
     margin-top: 0.6em;
 }
 
+.remove-password {
+    display: none;
+}
+
+.show-form,
+.pure-button {
+    background: none;
+    color: white;
+}
+
 
 /* -- Responsive Styles (Media Queries) ------------------------------------- */
 

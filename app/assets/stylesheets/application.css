@@ -269,6 +269,24 @@ input.login-button:hover {
   text-align: center;
 }
 
+#support {
+  position: absolute;
+  top: -15px;
+  right: 0;
+  color: white;
+  margin-bottom: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+#support .fa {
+  color: white;
+  background: #111;
+  padding: 2px 6px;
+  border: 2px solid #777;
+  border-radius: 50%;
+}
+
 @media screen and (min-width: 48em) {
 
   .bookmarks-container {

@@ -1,6 +1,5 @@
 body {
     color: #777;
-    overflow: hidden;
 }
 
 .pure-img-responsive {
@@ -22,9 +21,7 @@ Add transition to containers so they can push in and out.
 }
 
 /* Hide the sidebar scrollbar */
-#menu {
-  overflow: hidden;
-}
+
 #menu::-webkit-scrollbar { 
   display: none; 
 }

@@ -1,18 +1,18 @@
 <%= render 'menu' %>
+  <div id="main">
+    <div id="support"><a href="https://github.com/astopo/book-orbit-rails/issues" target="_blank"><span class="fa fa-question"></span></a></div>
+    <div class="content">
+      <h2><a href="/<%= @user.username%>">all collections</a> / <% if @collection %>
+             <%= @collection %>
+          <% end %></h2>
 
-    <div id="main">
-        <div class="content">
-            <h2><a href="/<%= @user.username%>">all collections</a> / <% if @collection %>
-                   <%= @collection %>
-                <% end %></h2>
+      <% if @collection
+        @bookmarks = users_bookmarks_in_collection
+      else
+        @bookmarks = @user.bookmarks
+      end %>
 
-            <% if @collection
-              @bookmarks = users_bookmarks_in_collection
-            else
-              @bookmarks = @user.bookmarks
-            end %>
-
-            <%= render 'bookmarks' %>
-        </div>
+      <%= render 'bookmarks' %>
     </div>
+  </div>
 </div>

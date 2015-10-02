@@ -35,16 +35,16 @@
 
             <% if (session[:users] && session[:users].include?(@user.id)) || @user.password_digest.nil? %>
 
-            <%= form_tag({controller: "user", action: "edit"}, method: "post", class: "pure-form") %>
+            <%= form_tag({controller: "users", action: "edit"}, method: "post", class: "pure-form") %>
               <fieldset>
                 <%= hidden_field_tag(:add_bookmark, true) %>
                 <%= text_field_tag(:url, "", :placeholder => "Add url...") %>
-                <a class="pure-button button-sidebar show-form">+</a>
+                <a id="show-form" class="pure-button button-sidebar show-form">+</a>
                 <div class="collection-inputs hide">
-                      <p>Collections:</p>
+                      <p>Add to Collections</p>
                       <%= text_field_tag("collection[]", "", :placeholder => "Collection Name", :class => "collection-input") %>
                       <span class="add-collection-input">+</span>
-                      <%= submit_tag "+ Add", :class => 'pure-button button-sidebar hide' %>
+                      <%= submit_tag "Add Bookmark", :class => 'pure-button button-sidebar hide', :id=> 'add-bookmark' %>
                 </div>
               </fieldset>
             </form>
@@ -55,7 +55,7 @@
             <form method="get" action="/<%= @user.username %>/search" class="pure-form">
                 <fieldset>
                     <input type="text" name="search_string" placeholder="Find something..." required>
-                    <button type="submit" class="pure-button button-sidebar">s</button>
+                    <button type="submit" class="pure-button button-sidebar" id="search"><span class="fa fa-search"></span></button>
                 </fieldset>
             </form>
 

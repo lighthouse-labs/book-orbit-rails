@@ -76,19 +76,6 @@ hr {
   font-size: 0.75em;
 }
 
-/* Home Page */
-
-.homepage {
-  text-align:center;
-}
-
-.homepage .logo {
-  max-height: 300px;
-  margin-left: -230px;
-  margin-top: 20%;
-}
-
-
 /* User Library Pages */
 
 /* Sidebar */
@@ -119,12 +106,6 @@ a.hide {
   color: #fff;
   border: 1px solid #fff;
   cursor: pointer;
-}
-
-#menu a.show-form {
-  display: inline;
-  padding: .45em .9em;
-  color: #222;
 }
 
 /* Content Layout */
@@ -274,6 +255,37 @@ input.login-button:hover {
   color: #222;
 }
 
+/* New Styles... */
+#show-form,
+#search {
+  display: inline;
+  padding: 0.5em;
+  color: #fff;
+  background: none;
+}
+
+.collection-inputs p {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+#support {
+  position: absolute;
+  top: -15px;
+  right: 0;
+  color: white;
+  margin-bottom: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+#support .fa {
+  color: white;
+  background: #111;
+  padding: 2px 6px;
+  border: 2px solid #777;
+  border-radius: 50%;
+}
 
 @media screen and (min-width: 48em) {
 

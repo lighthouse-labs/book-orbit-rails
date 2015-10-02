@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  // OMG this javascript is horrible.
+
   var collection_input = "<input type='text' name='collection[]'' class='collection-input' placeholder='Collection name'>";
 
   $( "fieldset" ).one("focusin", "input[name='url']", function(){

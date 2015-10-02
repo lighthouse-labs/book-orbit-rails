@@ -30,9 +30,9 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: bookorb_main
-  host: localhost
+  database: devom68dtsgrc9
+  host: ec2-54-83-18-87.compute-1.amazonaws.com
   port: 5432
   pool: 5
-  username: bookorb
-  password: Lighthouse1!
+  username: uitysaxxlyagzw
+  password: j3Dh-M2V2GdbB2diYcsfpvED3l

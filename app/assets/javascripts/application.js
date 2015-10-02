@@ -19,7 +19,6 @@
 // custom shit
 var ready = function() {
 
-  console.log("hi");
   var collection_input = "<input type='text' name='collection[]'' class='collection-input' placeholder='Collection name'>";
 
   $( "fieldset" ).one("focusin", "input[name='url']", function(){
@@ -40,7 +39,7 @@ var ready = function() {
   $( ".add-collection-input" ).on("click", function(e){
     console.log('add collection clicked');
     e.preventDefault;
-    $(this).parent().append(collection_input);
+    $(collection_input).insertAfter($(this));
   });
 
   $( ".pure-u-1" ).on("mouseenter", function() {

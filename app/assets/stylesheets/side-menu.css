@@ -20,6 +20,12 @@ Add transition to containers so they can push in and out.
     transition: all 0.2s ease-out;
 }
 
+/* Hide the sidebar scrollbar */
+
+#menu::-webkit-scrollbar { 
+  display: none; 
+}
+
 /*
 This is the parent `<div>` that contains the menu and the content area.
 */
@@ -201,6 +207,16 @@ small screens.
 
 .menu-link span:after {
     margin-top: 0.6em;
+}
+
+.remove-password {
+    display: none;
+}
+
+.show-form,
+.pure-button {
+    background: none;
+    color: white;
 }
 
 
